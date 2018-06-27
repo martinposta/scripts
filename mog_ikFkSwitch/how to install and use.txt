@@ -1,0 +1,80 @@
+// Universal IK FK
+// version 1.6
+// April 29, 2018
+// Monika Gelbmann
+// monikagelbmann@gmail.com
+// www.monikagelbmann.com
+
+Universal IK FK Switch and Match Tool
+
+DESCRIPTION:
+This script lets you switch and match Poses between IK/FK controls in the animation scene.
+Works for Riggs that don't have IK/FK match built in and requires only Standard FK controls and IK Pole Vector Setup.The Controls are defined once and can be stored in Node for easy re use throughout the animation.
+
+INSTALL:
+
+	a) Copy the file (mog_ikFkSwitch.py) to your Maya scripts directory. On Windows that is 	Documents/maya/20xx/scripts/
+
+	b) Open Maya. In the Script Editor (Python), past the following code:
+
+import pymel.core as pm
+import mog_ikFkSwitch as mog_ikFkSwitch
+reload(mog_ikFkSwitch)
+mog_ikFkSwitch.FkIk_UI()
+
+
+	c) Hit execute (or Ctrl Enter)
+
+	The UI should open now.
+
+USAGE:
+	1. Define Limb to work on
+	This always needs to be defined bofore loading/storing/switching
+	Sides are treated seperately to not be restriced by naming convention
+
+	2. Define Ctrls necessary by selecting them and hit the << button
+	<< FK1: Upper arm
+	<< FK2: Lower arm
+	<< FK3: Hand
+	<< IK Ctrl: IK Hand
+	<< IK Pole:
+	<< Switch Ctrl: The ctrl that is used to switch between ik and fk mode
+	<< Switch Attr: The attribute that is dialed to switch.
+					It can be highlighted in the channel box and hit <<
+
+	Rotation Offset:
+	Some Riggs have different orientations in their IK and FK ctrls and joints.
+	This becomes obvious when running 'Match' and seeing a 90 degree offset in the wrist
+	Set the offset and run 'Match' again to align them
+
+	Switch IK/FK: Simple switches between the modes (does not do any matching)
+
+	Select all IK or FK ctrls
+
+	Key all IK/FK controsl on current frame
+
+	Bake IK/FK: Bake the entire frame range to ik or fk. Leaves source keys clean
+
+
+
+LIMITATIONS:
+	- Pole Vector Control is required and will not run if controlled with attribute
+	- Works only on Referenced Riggs
+
+
+Future Improvements/Optimzations planned:
+	 -   Make script work/not error if there is no polevector
+	 -   create nodes in Rigg files and look for Referenced Nodes on Load
+	 -   function on non-referenced riggs
+
+VERSIONS:
+1.6 - August 27, 2017 - Offset Value Bug fix. Storing float values now.
+1.5 - August 27, 2017 - Blend Value 1 - 10 bug fix
+	Pro version: Bake range and Set Keyframe for all IK/FK ctrls
+	Free version: Select all ik/fk ctrls
+1.4 - April 24, 2017 - Beta release. New interface. Auto detect limbs by selecting
+1.1 - Jan 12, 2017 - Improvement to interface and bug fixes.
+1.0 - Jan 07, 2017 - Initial Release.
+
+// Questions/comments/bugs/issues to
+// monikagelbmann@gmail.com
