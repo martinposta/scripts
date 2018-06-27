@@ -1,0 +1,412 @@
+global proc shelf_m_Random () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source dp_materialManager.mel;  materialManager;" 
+        -enableBackground 0
+        -align "center" 
+        -label "source dp_materialManager.mel;  materialManager;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/prefs/icons/MaterialManager/cc_diffuse.png" 
+        -image1 "D:/Martin/Documents/maya/2016/prefs/icons/MaterialManager/cc_diffuse.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source dp_materialManager.mel;  materialManager;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "NURBS Circle" 
+        -enableBackground 0
+        -align "center" 
+        -label "NURBS Circle" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "circle.png" 
+        -image1 "circle.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CreateNURBSCircle" 
+        -sourceType "mel" 
+        -doubleClickCommand "CreateNURBSCircleOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Polygon Plane" 
+        -enableBackground 0
+        -align "center" 
+        -label "Polygon Plane" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyMesh.png" 
+        -image1 "polyMesh.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CreatePolygonPlane" 
+        -sourceType "mel" 
+        -doubleClickCommand "CreatePolygonPlaneOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Polygon Sphere" 
+        -enableBackground 0
+        -align "center" 
+        -label "Polygon Sphere" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySphere.png" 
+        -image1 "polySphere.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CreatePolygonSphere" 
+        -sourceType "mel" 
+        -doubleClickCommand "CreatePolygonSphereOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Polygon Cube" 
+        -enableBackground 0
+        -align "center" 
+        -label "Polygon Cube" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyCube.png" 
+        -image1 "polyCube.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CreatePolygonCube" 
+        -sourceType "mel" 
+        -doubleClickCommand "CreatePolygonCubeOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Grab Tool" 
+        -enableBackground 0
+        -align "center" 
+        -label "Grab Tool" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "Grab.png" 
+        -image1 "Grab.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "SetMeshGrabTool" 
+        -sourceType "mel" 
+        -doubleClickCommand "ShowMeshGrabToolOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Freeze Tool: Paint areas of a surface to prevent further modification" 
+        -enableBackground 0
+        -align "center" 
+        -label "Freeze Tool" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "Freeze.png" 
+        -image1 "Freeze.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "SetMeshFreezeTool" 
+        -sourceType "mel" 
+        -doubleClickCommand "ShowMeshFreezeToolOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Vieport 2.0 light setup" 
+        -enableBackground 0
+        -align "center" 
+        -label "Vieport 2.0 light setup" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "VP2Light" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "//Vieport 2.0 light setup\n\nexpression -s \"perspShape.farClipPlane=perspShape.nearClipPlane*100000\";\ndefaultDirectionalLight(1, 1,1,1, \"0\", 0,0,0, 0);\ndefaultAmbientLight(1, 0.45, 1,1,1, \"0\", 0,0,0, \"1\");\nsetAttr \"ambientLightShape1.color\" -type double3 1 1 1 ;\nsetAttr \"ambientLightShape1.color\" -type double3 0.577 0.869843 1 ;\nsetAttr \"ambientLightShape1.intensity\" 0.34;\nselect -r directionalLight1 ;\nrotate -r -ws -fo -64.777186 0 0 ;\nsetAttr \"directionalLightShape1.useDepthMapShadows\" 1;\nsetAttr \"directionalLightShape1.dmapResolution\" 4096;\nsetAttr \"directionalLightShape1.dmapFilterSize\" 5;\nsetAttr \"directionalLightShape1.useRayTraceShadows\" 1;\nsetAttr \"directionalLightShape1.locatorScale\" 50;\nselect -add ambientLight1 ;\nmove -r 0 500 0 ;\nmodelEditor -e -shadows true -displayLights all modelPanel4;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "markers" 
+        -enableBackground 0
+        -align "center" 
+        -label "import maya.cmds as cmds\ncmds.evalDeferred( \"import rjTimelineMa..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "markers" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\ncmds.evalDeferred( \"import rjTimelineMarker; rjTimelineMarker.install()\" )" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "rockGen" 
+        -enableBackground 0
+        -align "center" 
+        -label "rockGen" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "rockGen" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "rockGen" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "spPaint3d" 
+        -enableBackground 0
+        -align "center" 
+        -label "spPaint3d" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "spPaint3d" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "spPaint3d" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "/*  This file downloaded from Highend3d.com\n''  \n''  Highend3d.c..." 
+        -enableBackground 0
+        -align "center" 
+        -label "/*  This file downloaded from Highend3d.com\n''  \n''  Highend3d.c..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selRandom" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*  This file downloaded from Highend3d.com\n''  \n''  Highend3d.com File Information:\n''  \n''    Script Name: RandomSelect v0.1\n''    Author: Jordi Fernandez Mora\n''    Last Updated: September 4, 2003\n''    Update/Change this file at:\n''    http://www.highend3d.com/maya/mel/?section=utilities#2525\n''  \n''  Please do not alter any information above this line\n''  it is generated dynamically by Highend3d.com and will\n''  be changed automatically on any updates.\n*/\n\n//Random Select\n//Jordi Fernandez Mora\n//e-mail: jordi.fernandezmo@campus.uab.es\n// \n//\t01-08-2003: Repetition selection control 100 % runing\n//\t30-07-2003: Without repetition control\n//\n\nwindow -w 25 -h 15-title \"General Random Select 2003\" finestra;\n\ncolumnLayout;\n\nintSliderGrp\n-label \"% Selection: \"\n-field true\n-minValue 1\n-maxValue 100\n-value 7\ntpcent;\n\nbutton -w 150 -label \"OK\" -c \"seleccio\"; \n\nshowWindow finestra;\n\nglobal proc seleccio()\n\n{\n\n$seleccio = `ls -sl -fl`;\n$SizeSeleccio= size($seleccio);\nint $tpcentfinal = `intSliderGrp -q -value tpcent`;\n$NombreSeleccions= (($tpcentfinal*$SizeSeleccio)/100);\nselect -cl;\n\nint $randomList[] = `returnRandomFloatList 0 $SizeSeleccio $NombreSeleccions`;\n\nwhile($NombreSeleccions>=0)\n{\nprint (\"\\nSelecting items...\");\nselect -add $seleccio[$randomList[$NombreSeleccions]];\n$NombreSeleccions--;\n\n}\n\nprint $randomList;\n}\n\nglobal proc int[] returnRandomFloatList(int $min, int $max, int $listSize) \n{ \nint $randomList[]; \nclear $randomList; \nfor ($a=0; $a<$listSize; $a++) \n{ \nint $val = `rand $min $max`; \nif (!`intArrayCount $val $randomList`) \n$randomList[$a] = $val; \nelse \n{ \nprint \"Duplicate value found, replacing.\\n\"; \n$a--; \n} \n} \nreturn $randomList; \n} \nglobal proc int intArrayCount(int $item, int $list[]) \n{ \nint $result = 0; \nint $listItem; \nfor ($listItem in $list) { \nif ($item == $listItem) $result++; \n} \nreturn $result; \n}\n\n\n\n\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

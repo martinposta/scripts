@@ -1,0 +1,819 @@
+global proc shelf_m_Anim () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setObjectPickMask \"All\" 0;\neditMenuUpdate MayaWindow|mainEditMen..." 
+        -enableBackground 0
+        -align "center" 
+        -label "setObjectPickMask \"All\" 0;\neditMenuUpdate MayaWindow|mainEditMen..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/scripts/clSel.png" 
+        -image1 "D:/Martin/Documents/maya/2016/scripts/clSel.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "setObjectPickMask \"All\" 0;\nsetObjectPickMask \"Curve\" true;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");\ncreateMaskPopup \"objOther\";\nselectType -locator true;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setObjectPickMask \"All\" 0;\neditMenuUpdate MayaWindow|mainEditMen..." 
+        -enableBackground 0
+        -align "center" 
+        -label "setObjectPickMask \"All\" 0;\neditMenuUpdate MayaWindow|mainEditMen..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/scripts/cmlSel.png" 
+        -image1 "D:/Martin/Documents/maya/2016/scripts/cmlSel.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "setObjectPickMask \"All\" 0;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");\nsetObjectPickMask \"Curve\" true;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");\nsetObjectPickMask \"Surface\" true;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");\ncreateMaskPopup \"objOther\";\nselectType -locator true;\nupdateObjectSelectionMasks;\nupdateComponentSelectionMasks;\ndR_selTypeChanged(\"\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "aweControlPicker;" 
+        -enableBackground 0
+        -align "center" 
+        -label "aweControlPicker;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/AppData/Docs/maya/2016/prefs/icons/aweControlPicker.png" 
+        -image1 "D:/AppData/Docs/maya/2016/prefs/icons/aweControlPicker.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source \"aweControlPicker.mel\";\naweControlPicker;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Selector:biped" 
+        -enableBackground 0
+        -align "center" 
+        -label "Selector:biped" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/scripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -image1 "D:/Martin/Documents/maya/scripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source \"D:/Martin/Documents/maya/scripts/AdvancedSkeleton5/AdvancedSkeleton5Files/Selector/biped.mel\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_puppet" 
+        -enableBackground 0
+        -align "center" 
+        -label "python(\"import ml_puppet;ml_puppet.main()\");" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "ml_puppet" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "python(\"import ml_puppet;ml_puppet.main()\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "library" 
+        -enableBackground 0
+        -align "center" 
+        -label "import tx_animationManager_ui\ntx_anim = tx_animationManager_ui.m..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/scripts/library.png" 
+        -image1 "D:/Martin/Documents/maya/2016/scripts/library.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import tx_animationManager_ui\ntx_anim = tx_animationManager_ui.mainWindow()\ntx_anim.show()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import studiolibrary\n\nstudiolibrary.main()" 
+        -enableBackground 0
+        -align "center" 
+        -label "import studiolibrary\n\nstudiolibrary.main()" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/scripts/studiolibrary/resource/icons/icon.png" 
+        -image1 "D:/Martin/Documents/maya/scripts/studiolibrary/resource/icons/icon.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import studiolibrary\n\nstudiolibrary.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import onionSkinRenderer.onionSkinRendererWindow as onionWindow\nonionWindow.openOnionSkinRenderer()\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "import onionSkinRenderer.onionSkinRendererWindow as onionWindow\n..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/scripts/onionSkinRenderer/onionskin_renderer_icon_32.png" 
+        -image1 "D:/Martin/Documents/maya/scripts/onionSkinRenderer/onionskin_renderer_icon_32.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import onionSkinRenderer.onionSkinRendererWindow as onionWindow\nonionWindow.openOnionSkinRenderer()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_animCurveEditor" 
+        -enableBackground 0
+        -align "center" 
+        -label "ml_animCurveEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "edit" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "ml_animCurveEditor.png" 
+        -image1 "ml_animCurveEditor.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import ml_animCurveEditor\nml_animCurveEditor.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_tangentWeight" 
+        -enableBackground 0
+        -align "center" 
+        -label "ml_tangentWeight" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "ml_tangentWeight.png" 
+        -image1 "ml_tangentWeight.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import ml_tangentWeight\nml_tangentWeight.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "+ Plus" ( "import ml_tangentWeight\nml_tangentWeight.plus()" )
+        -mip 0
+        -mi "- Minus" ( "import ml_tangentWeight\nml_tangentWeight.minus()" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_convertRotationOrder" 
+        -enableBackground 0
+        -align "center" 
+        -label "ml_convertRotationOrder" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "ml_convertRotationOrder.png" 
+        -image1 "ml_convertRotationOrder.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import ml_convertRotationOrder;ml_convertRotationOrder.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "create a locator on selected object" 
+        -enableBackground 0
+        -align "center" 
+        -label "proc locGRP () {\n\n//Find selection.\nstring $selObjs[] = `ls -sl`..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/scripts/locator.png" 
+        -image1 "D:/Martin/Documents/maya/2016/scripts/locator.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "proc locGRP () {\n\n//Find selection.\nstring $selObjs[] = `ls -sl`;\n\n\n//Execute FOR loop.\nfor ($objs in $selObjs) {\n\n\n    //Create locator and group it.  Create nurbs curve.\n    string $loc[] = `spaceLocator`;\n    //string $grpLoc = `group`;\n\n    //Match transforms of group to selected joint or object.\n    parentConstraint $objs $loc;\n    string $findConstraints[] = `listRelatives -type parentConstraint $loc`;\n    select $findConstraints[0];\n    doDelete;\n    \n    //Parent joint or object to locator.\n    parent $loc $objs;\n    makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $objs;\n        \n    //Rename locator, group, and curve.\n    //string $renameGrp = `rename $grpLoc ($objs + \"_GRP\")`;\n    string $renameLoc = `rename $loc ($objs + \"_LOC\")`;\n    }\n}\n\n\nlocGRP () ;\nparent -w;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Snap an object" 
+        -enableBackground 0
+        -align "center" 
+        -label "proc matchPos() {\n\nstring $pntCon2[] = `pointConstraint`;\ndelete..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/scripts/snap.png" 
+        -image1 "D:/Martin/Documents/maya/2016/scripts/snap.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "proc matchPos() {\n\nstring $pntCon2[] = `parentConstraint`;\ndelete $pntCon2[0];\n\n}\n\nmatchPos();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 40
+        -height 40
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "animSnap();" 
+        -enableBackground 0
+        -align "center" 
+        -label "animSnap();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/2016/prefs/icons/animSnap.png" 
+        -image1 "D:/Martin/Documents/maya/2016/prefs/icons/animSnap.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "animSnap();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 33
+        -height 33
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "rjAnchorTransform" 
+        -enableBackground 0
+        -align "center" 
+        -label "import rjAnchorTransform.ui \nrjAnchorTransform.ui.show()" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "rjAnchorTransform" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "D:/Martin/Documents/maya/scripts/rjAnchorTransform/icons/rjAnchorTransform.png" 
+        -image1 "D:/Martin/Documents/maya/scripts/rjAnchorTransform/icons/rjAnchorTransform.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rjAnchorTransform.ui \nrjAnchorTransform.ui.show()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Offset" 
+        -enableBackground 0
+        -align "center" 
+        -label "craOffsetKeys;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Offset" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "craOffsetKeys;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "VertexTrail" 
+        -enableBackground 0
+        -align "center" 
+        -label "TrailCurve();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "VertexTrail" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "TrailCurve();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -enableBackground 0
+        -align "center" 
+        -label "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "1.TR" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*\n    Script:     secondaryMotion.mel\n    Version:    0.1\n    Author:     Martin Pošta\n    Website:    http://www.martinposta.com\n\tBased on: \tLee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.\n\n    Descr:      It makes stuff move.\n\tUsage:\t\tSelct a controler. Choose if you want secondary motion with \"translation and rotation\", or just \"translation\", or just \"rotation\".\n\t\t\t\tAfter initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.\n\n*/\n\nstring $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovladaci a pøidá jiggle\npolyPlane -w 40 -h 40 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;\nselect -r $selekce;\nselect -tgl pPlane1 ;\ndoCreateParentConstraintArgList 1 { \"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\nparentConstraint -weight 1;\nselect -r pPlane1 ;\ndoJiggle 1 { \"0.5\", \"0.5\", \"1\", \"0\", \"0\", \"default\", \"\" };\nsetAttr \"jiggle1.jiggleWeight\" .8;\nsetAttr \"jiggle1.damping\" 0;\nsetAttr \"jiggle1.stiffness\" 0.1;\nsetAttr \"jiggle1.forceOnTangent\" 0.5;\nsetAttr \"jiggle1.forceAlongNormal\" 0.5;\n//simulace se zapeèe a pøidá nhair + smaže pøebyteèné nody\nbakeResults -simulation true -t \"1:120\" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {\"pPlane1\"};\nselect -r pPlane1_parentConstraint1 ;\ndelete;\nselect -r pPlane1 ;\ncreateHair 1 1 10 0 0 0 0 3 0 1 1 1;\nselect -r hairSystem1 ;\ndelete;\nselect -r curve1 ;\ndelete;\nselect -r pfxHair1 ;\ndelete;\nselect -r nucleus1 ;\ndelete;\nselect -r nRigid1 ;\ndelete;\n//constrain ovladaèe k nhairu\nselect -r pPlane1Follicle5050 ;\nselect -add $selekce;\n//pozice i rotace\n//doCreateParentConstraintArgList 1 { \"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\n//parentConstraint -weight 1;\n\n//pouze pozice\ndoCreateParentConstraintArgList 1 { \"1\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"1\",\"\",\"1\" };\nparentConstraint -mo -skipRotate x -skipRotate y -skipRotate z -weight 1;\n\nselect -r pPlane1 ;\nselect -addFirst jiggle1 ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -enableBackground 0
+        -align "center" 
+        -label "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "1.T" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*\n    Script:     secondaryMotion.mel\n    Version:    0.1\n    Author:     Martin Pošta\n    Website:    http://www.martinposta.com\n\tBased on: \tLee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.\n\n    Descr:      It makes stuff move.\n\tUsage:\t\tSelct a controler. Choose if you want secondary motion with \"translation and rotation\", or just \"translation\", or just \"rotation\".\n\t\t\t\tAfter initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.\n\n*/\n\nstring $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovladaci a pøidá jiggle\npolyPlane -w 40 -h 40 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;\nselect -r $selekce;\nselect -tgl pPlane1 ;\ndoCreateParentConstraintArgList 1 { \"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\nparentConstraint -weight 1;\nselect -r pPlane1 ;\ndoJiggle 1 { \"0.5\", \"0.5\", \"1\", \"0\", \"0\", \"default\", \"\" };\nsetAttr \"jiggle1.jiggleWeight\" .8;\nsetAttr \"jiggle1.damping\" 0;\nsetAttr \"jiggle1.stiffness\" 0.1;\nsetAttr \"jiggle1.forceOnTangent\" 0.5;\nsetAttr \"jiggle1.forceAlongNormal\" 0.5;\n//simulace se zapeèe a pøidá nhair + smaže pøebyteèné nody\nbakeResults -simulation true -t \"1:120\" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {\"pPlane1\"};\nselect -r pPlane1_parentConstraint1 ;\ndelete;\nselect -r pPlane1 ;\ncreateHair 1 1 10 0 0 0 0 3 0 1 1 1;\nselect -r hairSystem1 ;\ndelete;\nselect -r curve1 ;\ndelete;\nselect -r pfxHair1 ;\ndelete;\nselect -r nucleus1 ;\ndelete;\nselect -r nRigid1 ;\ndelete;\n//constrain ovladaèe k nhairu\nselect -r pPlane1Follicle5050 ;\nselect -add $selekce;\n//pozice i rotace\n//doCreateParentConstraintArgList 1 { \"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\n//parentConstraint -weight 1;\n\n//pouze pozice\ndoCreateParentConstraintArgList 1 { \"1\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"1\",\"\",\"1\" };\nparentConstraint -mo -skipRotate x -skipRotate y -skipRotate z -weight 1;\n\nselect -r pPlane1 ;\nselect -addFirst jiggle1 ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -enableBackground 0
+        -align "center" 
+        -label "string $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovlada..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "1.R" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*\n    Script:     secondaryMotion.mel\n    Version:    0.1\n    Author:     Martin Pošta\n    Website:    http://www.martinposta.com\n\tBased on: \tLee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.\n\n    Descr:      It makes stuff move.\n\tUsage:\t\tSelct a controler. Choose if you want secondary motion with \"translation and rotation\", or just \"translation\", or just \"rotation\".\n\t\t\t\tAfter initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.\n\n*/\n\n\nstring $selekce[] = `ls -sl`;\n//vytvoøí poly, constrain k ovladaci a pøidá jiggle\npolyPlane -w 40 -h 40 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;\nselect -r $selekce;\nselect -tgl pPlane1 ;\ndoCreateParentConstraintArgList 1 { \"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\nparentConstraint -weight 1;\nselect -r pPlane1 ;\ndoJiggle 1 { \"0.5\", \"0.5\", \"1\", \"0\", \"0\", \"default\", \"\" };\nsetAttr \"jiggle1.jiggleWeight\" .8;\nsetAttr \"jiggle1.damping\" 0;\nsetAttr \"jiggle1.stiffness\" 0.1;\nsetAttr \"jiggle1.forceOnTangent\" 0.5;\nsetAttr \"jiggle1.forceAlongNormal\" 0.5;\n//simulace se zapeèe a pøidá nhair + smaže pøebyteèné nody\nbakeResults -simulation true -t \"238:450\" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {\"pPlane1\"};\nselect -r pPlane1_parentConstraint1 ;\ndelete;\nselect -r pPlane1 ;\ncreateHair 1 1 10 0 0 0 0 3 0 1 1 1;\nselect -r hairSystem1 ;\ndelete;\nselect -r curve1 ;\ndelete;\nselect -r pfxHair1 ;\ndelete;\nselect -r nucleus1 ;\ndelete;\nselect -r nRigid1 ;\ndelete;\n//constrain ovladaèe k nhairu\nselect -r pPlane1Follicle5050 ;\nselect -add $selekce;\n//pozice i rotace\ndoCreateParentConstraintArgList 1 { \"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"1\",\"\",\"1\" };\nparentConstraint -mo -skipTranslate x -skipTranslate y -skipTranslate z -weight 1;\n\n//pouze pozice\n//doCreateParentConstraintArgList 1 { \"1\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"1\",\"\",\"1\" };\n//parentConstraint -mo -skipRotate x -skipRotate y -skipRotate z -weight 1;\n\nselect -r pPlane1 ;\nselect -addFirst jiggle1 ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "//vyèištìní\nselect -r pPlane1 ;\ndoCreateGeometryCache 6 { \"2\", \"..." 
+        -enableBackground 0
+        -align "center" 
+        -label "//vyèištìní\nselect -r pPlane1 ;\ndoCreateGeometryCache 6 { \"2\", \"..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "2.Bake" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*\n    Script:     secondaryMotion.mel\n    Version:    0.1\n    Author:     Martin Pošta\n    Website:    http://www.martinposta.com\n\tBased on: \tLee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.\n\n    Descr:      It makes stuff move.\n\tUsage:\t\tSelct a controler. Choose if you want secondary motion with \"translation and rotation\", or just \"translation\", or just \"rotation\".\n\t\t\t\tAfter initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.\n\n*/\n\n//vyèištìní\nselect -r pPlane1 ;\ndoCreateGeometryCache 6 { \"2\", \"1\", \"10\", \"OneFile\", \"1\", \"\",\"0\",\"\",\"0\", \"add\", \"0\", \"1\", \"1\",\"0\",\"1\",\"mcx\",\"0\" } ;\nselect -r $selekce;\nbakeResults -simulation true -t \"1:120\" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true ;\nselect -r pPlane1 ;\ndelete;\nselect -r hairSystem1Follicles ;\ndelete;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "'''\nkeyReductionTool\nVersion 1.1.0, December 2016\n@author = Wata..." 
+        -enableBackground 0
+        -align "center" 
+        -label "'''\nkeyReductionTool\nVersion 1.1.0, December 2016\n@author = Wata..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "keyRed" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "'''\nkeyReductionTool\nVersion 1.1.0, December 2016\n@author = Wataru Neoi\n\n'''\n\n\nimport maya.cmds as cmds\nimport math\n\n#------------------------------------------------------------------------------------------------------------------------------------\n##functions\ndef getKeyable_attrs(obj):\n\tkeyable_attrs = cmds.listAttr(obj,keyable=True,sn=True)\n\tif keyable_attrs == None:\n\t\treturn []\n\treturn keyable_attrs\n\ndef fixedKey(key_tangentTypes,key_numbers):\n\t#define index\n\tfixed_index = []\n\tfor (num,key_tangentType) in enumerate(key_tangentTypes):\n\t\t#define fixedKeyNumber and index\n\t\tfixedKeyNumber = num + key_numbers[0]\n\t\tif key_tangentType == 'step':\n\t\t\tcontinue\n\t\telse:\n\t\t\tfixed_index.append((fixedKeyNumber,))\n\treturn fixed_index\n\ndef lockedKeyframe(L_KeyNameLists):\n\t#define index\n\tL_Name = []\n\tL_keyTimes = []\n\tL_keyValues = []\n\tL_keyOutTangents = []\n\tL_keyTangentTypes = []\n\n\tif L_KeyNameLists != None:\n\t\tfor L_keyName in L_KeyNameLists:\n\t\t\tkeyTC = cmds.keyframe(L_keyName,q=True,sl=True,tc=True)\n\t\t\tkeyVC = cmds.keyframe(L_keyName,q=True,sl=True,vc=True)\n\t\t\tKOT = []\n\t\t\tKTT = []\n\t\t\tif keyTC != None:\n\t\t\t\tL_Name.append(L_keyName)\n\t\t\t\tL_keyTimes.append(keyTC)\n\t\t\t\tL_keyValues.append(keyVC)\n\t\t\t\tfor TC in keyTC:\n\t\t\t\t\tKOT.append(cmds.keyTangent(L_keyName,q=True,time=(TC,TC),outAngle=True))\n\t\t\t\t\tKTT.append(cmds.keyTangent(L_keyName,q=True,time=(TC,TC),ott=True))\n\t\t\t\t\n\t\t\t\tKOT = [e2 for e1 in KOT for e2 in e1]\n\t\t\t\tKTT = [e2 for e1 in KTT for e2 in e1]\n\n\t\t\t\tL_keyOutTangents.append(KOT)\n\t\t\t\tL_keyTangentTypes.append(KTT)\n\t\t\telse:\n\t\t\t\tL_Name = []\n\t\t\t\tL_keyTimes = []\n\t\t\t\tL_keyValues = []\n\t\t\t\tL_keyOutTangents = []\n\t\t\t\tL_keyTangentTypes = []\n\telse:\n\t\tL_Name = []\n\t\tL_keyTimes = []\n\t\tL_keyValues = []\n\t\tL_keyOutTangents = []\n\t\tL_keyTangentTypes = []\n\n\treturn [L_Name,L_keyTimes,L_keyValues,L_keyOutTangents,L_keyTangentTypes]\n\t\t\ndef common(obj,channelCheck,channelBox_attrs,appliedChannels,start,end):\n\t#define lists\n\tchannels = []\n\n\t#list keyable_attrs\n\tkeyable_attrs = getKeyable_attrs(obj)\n\n\tif channelBox_attrs == None:\n\t\tcmds.error(\"Select Channel\")\n\t\tpass\n\telif len(channelBox_attrs) == 0:\n\t\tif channelCheck =='AllKeyable':\n\t\t\tkeyable_channels = keyable_attrs\n\t\telif channelCheck == 'FromAttributes':\n\t\t\tkeyable_channels = list(set(keyable_attrs)&set(appliedChannels))\n\telse:\n\t\tkeyable_channels = list(set(keyable_attrs)&set(channelBox_attrs))\n\n\tfor keyable_channel in keyable_channels:\n\t\t#append channels\n\t\tif cmds.keyframe('{0}.{1}'.format(obj,keyable_channel),q=True,t=(start,end),timeChange=True) != None:\n\t\t\tchannels.append(keyable_channel)\n\t\telse:\n\t\t\tcontinue\n\treturn [keyable_channels,channels]\n\ndef getReduct_index(key_outTangents,key_values,key_numbers,key_times):\n\t#define reduct_index list\n\treduct_index = []\n\tr_sample = (cmds.floatSliderGrp('ReductKeySample',q=True,value=True))*30\n\ta = -1\n\tfor (i,key_outTangent) in enumerate(key_outTangents):\n\t\t#define cutKeyNumber\n\t\tcutKeyNumber = i + key_numbers[0]\n\n\t\tif i == 0:\n\t\t\t#pass the first keyframe\n\t\t\tcontinue\n\t\telif i == len(key_outTangents)-1:\n\t\t\t#pass the last keyframe\n\t\t\tcontinue\n\t\telse:\n\t\t\tif 1 < i < len(key_outTangents)-2:\n\t\t\t\tAT = key_times[i-2] - key_times[i-1]\n\t\t\t\tAV = key_values[i-2] - key_values[i-1]\n\t\t\t\tBT = key_times[i] - key_times[i-1]\n\t\t\t\tBV = key_values[i] - key_values[i-1]\n\t\t\t\tCT = -BT\n\t\t\t\tCV = -BV\n\t\t\t\tDT = key_times[i+1] - key_times[i]\n\t\t\t\tDV = key_values[i+1] - key_values[i]\n\t\t\t\tET = -DT\n\t\t\t\tEV = -DV\n\t\t\t\tFT = key_times[i+2] - key_times[i+1]\n\t\t\t\tFV = key_values[i+2] - key_values[i+1]\n\n\t\t\t\tf_de = math.sqrt(AT*AT+AV*AV)*math.sqrt(BT*BT+BV*BV)\n\t\t\t\tc_de = math.sqrt(CT*CT+CV*CV)*math.sqrt(DT*DT+DV*DV)\n\t\t\t\tb_de = math.sqrt(ET*ET+EV*EV)*math.sqrt(FT*FT+FV*FV)\n\n\t\t\t\tf_rad = round(math.degrees(math.acos(round((AT*BT + AV*BV)/f_de,10))),2)\n\t\t\t\tc_rad = round(math.degrees(math.acos(round((CT*DT + CV*DV)/c_de,10))),2)\n\t\t\t\tb_rad = round(math.degrees(math.acos(round((ET*FT + EV*FV)/b_de,10))),2)\n\t\t\telse:\n\t\t\t\tf_rad = 0\n\t\t\t\tc_rad = 0\n\t\t\t\tb_rad = 0\n\n\t\t\t#except peakKey\n\t\t\tif (round(abs(key_outTangents[i-1]),2) - round(abs(key_outTangent),2)) * (round(abs(key_outTangent),2) - round(abs(key_outTangents[i+1]),2)) < 0:\n\t\t\t\ta = i\n\n\t\t\telif (round(key_outTangents[i-1],4)) * (round(key_outTangents[i+1],4)) < 0:\n\t\t\t\ta = i\n\n\t\t\telif abs((key_values[i-1] + key_values[i+1])/2 - key_values[i]) >= 1:\n\t\t\t\tcontinue\n\n\t\t\telif abs(key_outTangents[i-1] - key_outTangent) < 0.01 and abs(key_outTangent - key_outTangents[i+1]) > 0.1:\n\t\t\t\tcontinue\n\t\t\telif abs(key_outTangents[i-1] - key_outTangent) > 0.1 and abs(key_outTangent - key_outTangents[i+1]) < 0.01:\n\t\t\t\tcontinue\n\n\t\t\t#cut linearKey\n\t\t\telif abs(key_outTangents[i-1] - key_outTangent) < 0.01 and abs(key_outTangent - key_outTangents[i+1]) < 0.01:\n\t\t\t\tif key_outTangent == 0.0:\n\t\t\t\t\tif abs(key_values[i-1] - key_values[i]) < 0.001 and abs(key_values[i] - key_values[i+1]) < 0.001:\n\t\t\t\t\t\treduct_index.append((cutKeyNumber,))\n\t\t\t\t\telse:\n\t\t\t\t\t\tcontinue\n\t\t\t\telse:\n\t\t\t\t\treduct_index.append((cutKeyNumber,))\n\n\t\t\telif c_rad < f_rad and c_rad < b_rad:\n\t\t\t\tif a == i-1:\n\t\t\t\t\treduct_index.append((cutKeyNumber,))\n\t\t\t\telse:\n\t\t\t\t\ta = i\n\t\n\t\t\telse:\n\t\t\t\tif abs(key_outTangents[i-1] - key_outTangent) < r_sample and abs(key_outTangent - key_outTangents[i+1]) < r_sample:\n\t\t\t\t\treduct_index.append((cutKeyNumber,))\n\t\t\t\telse:\n\t\t\t\t\tcontinue\n\treturn reduct_index\n\ndef getstatic_index(key_outTangents,key_values,key_numbers,static_index):\n\tf_sample = cmds.floatSliderGrp('DelstaticSample',q=True,value=True)\n\tfor (i,key_outTangent) in enumerate(key_outTangents):\n\t\t#define cutKeyNumber\n\t\tcutKeyNumber = i + key_numbers[0]\n\n\t\tif i == 0:\n\t\t\tif key_values[i] == key_values[i+1]:\n\t\t\t\tstatic_index.append((cutKeyNumber,))\n\t\t\telse:\n\t\t\t\tcontinue\n\t\telif i == len(key_outTangents)-1:\n\t\t\tif key_values[i] == key_values[i-1]:\n\t\t\t\tstatic_index.append((cutKeyNumber,))\n\t\t\telse:\n\t\t\t\tcontinue\n\t\telse:\n\t\t\tif abs(key_outTangents[i-1] - key_outTangent) < 0.01 and abs(key_outTangent - key_outTangents[i+1]) < 0.01:\n\t\t\t\tif key_outTangent == 0.0:\n\t\t\t\t\tif abs(key_values[i-1] - key_values[i]) < f_sample and abs(key_values[i] - key_values[i+1]) < f_sample:\n\t\t\t\t\t\tstatic_index.append((cutKeyNumber,))\n\t\t\t\t\telse:\n\t\t\t\t\t\tcontinue\n\t\t\t\telse:\n\t\t\t\t\tcontinue\n\t\t\telse:\n\t\t\t\tcontinue\n\n\treturn static_index\n\ndef bake_channel(channelCheck,channelBox_attrs,appliedChannels):\n\tif channelCheck == 'FromChannelBox':\n\t\tbake_channels = channelBox_attrs\n\telif channelCheck == 'FromAttributes':\n\t\tbake_channels = appliedChannels\n\telse:\n\t\tbake_channels = []\n\treturn bake_channels\n\n#------------------------------------------------------------------------------------------------------------------------------------\n#------------------------------------------------------------------------------------------------------------------------------------\n##key Reduction\ndef ReductKeyFunction():\n\tcmds.commandEcho(ln=False)\n\n\t#define UI information\n\tchannelCheck = getChannelCheck()\n\tchannelBox_attrs = channelBoxList(channelCheck)\n\tappliedChannels = appliedChannelList(channelCheck)\n\t[start,end] = defineTimeRange()\n\n\t#create objLists\n\tobjLists = cmds.ls(sl=True)\n\n\tif cmds.checkBox('LockSelectedKey',q=True,value=True) == True:\n\t\t#create L_KeyNameLists\n\t\tL_KeyNameLists = cmds.keyframe(q=True,n=True)\n\t\t[L_Name,L_keyTimes,L_keyValues,L_keyOutTangents,L_keyTangentTypes] = lockedKeyframe(L_KeyNameLists)\n\telse:\n\t\tL_Name = []\n\t\tL_keyTimes = []\n\t\tL_keyValues = []\n\t\tL_keyOutTangents = []\n\t\tL_keyTangentTypes = []\n\n\t#undo\n\tcmds.undoInfo(openChunk=True)\n\n\tfor obj in objLists:\n\t\t#define channels\n\t\t[keyable_channels,channels] = common(obj,channelCheck,channelBox_attrs,appliedChannels,start,end)\n\n\t\tif len(channels) != 0:\n\t\t\tfor channel in channels:\n\t\t\t\t#get key information\n\t\t\t\tkey_times =  cmds.keyframe('{0}.{1}'.format(obj,channel),q=True,t=(start,end),timeChange=True)\n\t\t\t\tkey_values = cmds.keyframe('{0}.{1}'.format(obj,channel),q=True,t=(start,end),valueChange=True)\n\t\t\t\tkey_numbers = cmds.keyframe('{0}.{1}'.format(obj,channel),q=True,t=(start,end),iv=True)\n\t\t\t\tkey_outTangents = cmds.keyTangent('{0}.{1}'.format(obj,channel),q=True,t=(start,end),outAngle=True)\n\t\t\t\tkey_tangentTypes = cmds.keyTangent('{0}.{1}'.format(obj,channel),q=True,t=(start,end),ott=True)\n\n\t\t\t\t#fixed keyTangent\n\t\t\t\tfixed_index = fixedKey(key_tangentTypes,key_numbers)\n\t\t\t\tif len(fixed_index) !=0:\n\t\t\t\t\tcmds.keyTangent('{0}.{1}'.format(obj,channel),e=True,index=fixed_index,itt='fixed',ott='fixed')\n\t\t\t\telse:\n\t\t\t\t\tcontinue\n\t\t\t\t\t\n\t\t\t\tif len(key_outTangents) == 1:\n\t\t\t\t\tcontinue\n\t\t\t\telse:\n\t\t\t\t\treduct_index = getReduct_index(key_outTangents,key_values,key_numbers,key_times)\n\t\t\t\t\t\n\t\t\t\tif len(reduct_index) != 0:\n\t\t\t\t\tcmds.cutKey(obj,at=channel,clear=True,index=reduct_index)\n\t\t\t\telse:\n\t\t\t\t\tcontinue\n\t\telse:\n\t\t\tcontinue\n\n\tif cmds.checkBox('LockSelectedKey',q=True,value=True) == True:\n\t\tif len(L_Name) != 0:\n\t\t\tfor (i,L_name) in enumerate(L_Name):\n\t\t\t\tL_Times = L_keyTimes[i]\n\t\t\t\tL_values = L_keyValues[i]\n\t\t\t\tL_OutTangents = L_keyOutTangents[i]\n\t\t\t\tL_TangentTypes = L_keyTangentTypes[i]\n\n\t\t\t\tfor (j,L_Time) in enumerate(L_Times):\n\t\t\t\t\tcmds.setKeyframe(L_name,t=(L_Time,L_Time),value=L_values[j])\n\t\t\t\t\tcmds.keyTangent(L_name,e=True,time=(L_Time,L_Time),ia=L_OutTangents[j],oa=L_OutTangents[j],itt=L_TangentTypes[j],ott=L_TangentTypes[j])\n\n\tcmds.undoInfo(closeChunk=True)\n#------------------------------------------------------------------------------------------------------------------------------------\n##Del Static\ndef DelStaticFunction():\n\tcmds.commandEcho(ln=False)\n\n\t#define UI information\n\tchannelCheck = getChannelCheck()\n\tchannelBox_attrs = channelBoxList(channelCheck)\n\tappliedChannels = appliedChannelList(channelCheck)\n\t[start,end] = defineTimeRange()\n\n\t#create objLists\n\tobjLists = cmds.ls(sl=True)\n\n\t#undo\n\tcmds.undoInfo(openChunk=True)\n\n\tfor obj in objLists:\n\t\t#define channels\n\t\t[keyable_channels,channels] = common(obj,channelCheck,channelBox_attrs,appliedChannels,start,end)\n\n\t\tif len(channels) != 0:\n\t\t\tfor channel in channels:\n\t\t\t\t#get key information\n\t\t\t\tkey_values = cmds.keyframe('{0}.{1}'.format(obj,channel),q=True,t=(start,end),valueChange=True)\n\t\t\t\tkey_numbers = cmds.keyframe('{0}.{1}'.format(obj,channel),q=True,t=(start,end),iv=True)\n\t\t\t\tkey_outTangents = cmds.keyTangent('{0}.{1}'.format(obj,channel),q=True,t=(start,end),outAngle=True)\n\n\t\t\t\t#define static_index list\n\t\t\t\tstatic_index = []\n\t\t\t\t\t\t\t\t\t\n\t\t\t\tif len(key_values) == 1:\n\t\t\t\t\tstatic_index.append((0,))\n\t\t\t\telse:\n\t\t\t\t\tstatic_index = getstatic_index(key_outTangents,key_values,key_numbers,static_index)\n\t\t\t\t\t\n\t\t\t\tif len(static_index) != 0:\n\t\t\t\t\tcmds.cutKey(obj,at=channel,clear=True,index=static_index)\n\t\t\t\telse:\n\t\t\t\t\tcontinue\n\t\telse:\n\t\t\tcontinue\n\n\tcmds.undoInfo(closeChunk=True)\n#------------------------------------------------------------------------------------------------------------------------------------\n##Bake Simulation\ndef BakeFunction():\n\tcmds.commandEcho(ln=False)\n\n\t#define UI information\n\tchannelCheck = getChannelCheck()\n\tchannelBox_attrs = channelBoxList(channelCheck)\n\tappliedChannels = appliedChannelList(channelCheck)\n\t[start,end] = defineTimeRange()\n\tb_sample = cmds.floatField('bakeSample',q=True,value=True)\n\n\t#create objLists\n\tobjLists = cmds.ls(sl=True)\n\n\t#undo\n\tcmds.undoInfo(openChunk=True)\n\n\tbake_channels = bake_channel(channelCheck,channelBox_attrs,appliedChannels)\n\n\tif cmds.checkBox('Euler',q=True,value=True) == True:\n\t\tif cmds.checkBox('Sim',q=True,value=True) == True:\n\t\t\tcmds.bakeResults(objLists,at=bake_channels,simulation=True,t=(start,end),sb=b_sample,pok=True)\n\t\t\tcmds.setKeyframe(objLists,t=(-10000,-10000))\n\t\t\tcmds.setKeyframe(objLists,t=(-10001,-10001),value=0)\n\t\t\tcmds.filterCurve(objLists)\n\t\t\tcmds.cutKey(obj,at=bake_channels,t=(-10001,-10000))\n\t\telse:\n\t\t\tcmds.bakeResults(objLists,at=bake_channels,t=(start,end),sb=b_sample,pok=True)\n\t\t\tcmds.setKeyframe(objLists,t=(-10000,-10000))\n\t\t\tcmds.setKeyframe(objLists,t=(-10001,-10001),value=0)\n\t\t\tcmds.filterCurve(objLists)\n\t\t\tcmds.cutKey(objLists,at=bake_channels,t=(-10001,-10000))\n\telse:\n\t\tif cmds.checkBox('Sim',q=True,value=True) == True:\n\t\t\tcmds.bakeResults(objLists,at=bake_channels,simulation=True,t=(start,end),sb=b_sample,pok=True)\n\t\telse:\n\t\t\tcmds.bakeResults(objLists,at=bake_channels,t=(start,end),sb=b_sample,pok=True)\n\tif cmds.checkBox('POK',q=True,value=True) == False:\n\t\tcmds.cutKey(objLists,at=bake_channels,clear=True,t=(-100000,start-1))\n\t\tcmds.cutKey(objLists,at=bake_channels,clear=True,t=(end+1,100000))\n\telse:\n\t\tpass\n\n\tcmds.undoInfo(closeChunk=True)\n#------------------------------------------------------------------------------------------------------------------------------------\n#------------------------------------------------------------------------------------------------------------------------------------\n##UI attributes function\ndef getChannelCheck():\n\tif cmds.radioButton('AllKeyable',q=True,sl=True) == True:\n\t\tchannelCheck = 'AllKeyable'\n\telif cmds.radioButton('FromAttributes',q=True,sl=True) == True:\n\t\tchannelCheck = 'FromAttributes'\n\telif cmds.radioButton('FromChannelBox',q=True,sl=True) == True:\n\t\tchannelCheck = 'FromChannelBox'\n\treturn channelCheck\n\ndef appliedChannelList(channelCheck):\n\t#define List\n\tappliedChannels = []\n\tif channelCheck == 'FromAttributes':\n\t\tappliedChannels = checkBoxLists(appliedChannels)\n\t\treturn appliedChannels\n\telse:\n\t\treturn []\n\ndef channelBoxList(channelCheck):\n\tif channelCheck == 'FromChannelBox':\n\t\tchannelBox_attrs = cmds.channelBox('mainChannelBox',q=True,sma=True)\n\t\treturn channelBox_attrs\n\telse:\n\t\treturn []\n\ndef checkBoxLists(appliedChannels):\n\tfor t in ['x','y','z']:\n\t\tif cmds.checkBox('trans_'+t,q=True,value=True) == True:\n\t\t\tappliedChannels.append('t'+t)\n\t\telse:\n\t\t\tcontinue\n\n\tfor r in ['x','y','z']:\n\t\tif cmds.checkBox('rot_'+r,q=True,value=True) == True:\n\t\t\tappliedChannels.append('r'+r)\n\t\telse:\n\t\t\tcontinue\n\n\tfor s in ['x','y','z']:\n\t\tif cmds.checkBox('scl_'+s,q=True,value=True) == True:\n\t\t\tappliedChannels.append('s'+s)\n\t\telse:\n\t\t\tcontinue\n\treturn appliedChannels\n\ndef defineTimeRange():\n\tif cmds.radioButton('TimeSlider',q=True,sl=True) == True:\n\t\tstart = cmds.playbackOptions(q=True,minTime=True)\n\t\tend = cmds.playbackOptions(q=True,maxTime=True)\n\telif cmds.radioButton('StartEnd',q=True,sl=True) == True:\n\t\tstart = cmds.floatField('StartTime',q=True,value=True)\n\t\tend = cmds.floatField('EndTime',q=True,value=True)\n\treturn [start,end]\n\n#------------------------------------------------------------------------------------------------------------------------------------\n##UI control\n##checkBoxStatus\ndef checkBoxStatus(Status,Event):\n\tif \"T\" == Status:\n\t\tcmds.checkBox('trans_x',e=True,value=Event)\n\t\tcmds.checkBox('trans_y',e=True,value=Event)\n\t\tcmds.checkBox('trans_z',e=True,value=Event)\n\t\t\n\telif \"R\" == Status:\n\t\tcmds.checkBox('rot_x',e=True,value=Event)\n\t\tcmds.checkBox('rot_y',e=True,value=Event)\n\t\tcmds.checkBox('rot_z',e=True,value=Event)\n\t\t\n\telif \"S\" == Status:\n\t\tcmds.checkBox('scl_x',e=True,value=Event)\n\t\tcmds.checkBox('scl_y',e=True,value=Event)\n\t\tcmds.checkBox('scl_z',e=True,value=Event)\n\n\telif \"TAll\" == Status:\n\t\tcmds.checkBox('trans_All',e=True,value=Event)\n\t\n\telif \"RAll\" == Status:\n\t\tcmds.checkBox('rot_All',e=True,value=Event)\n\t\n\telif \"SAll\" == Status:\n\t\tcmds.checkBox('scl_All',e=True,value=Event)\n\n##radioButtonStatus\ndef radioButtonStatus(Status):\n\tif \"AllKeyable\" == Status:\n\t\tcmds.checkBox('trans_x',e=True,value=True,enable=False)\n\t\tcmds.checkBox('trans_y',e=True,value=True,enable=False)\n\t\tcmds.checkBox('trans_z',e=True,value=True,enable=False)\n\t\tcmds.checkBox('trans_All',e=True,value=True,enable=False)\n\n\t\tcmds.checkBox('rot_x',e=True,value=True,enable=False)\n\t\tcmds.checkBox('rot_y',e=True,value=True,enable=False)\n\t\tcmds.checkBox('rot_z',e=True,value=True,enable=False)\n\t\tcmds.checkBox('rot_All',e=True,value=True,enable=False)\n\n\t\tcmds.checkBox('scl_x',e=True,value=True,enable=False)\n\t\tcmds.checkBox('scl_y',e=True,value=True,enable=False)\n\t\tcmds.checkBox('scl_z',e=True,value=True,enable=False)\n\t\tcmds.checkBox('scl_All',e=True,value=True,enable=False)\n\n\telif \"FromAttributes\" == Status:\n\t\tcmds.checkBox('trans_x',e=True,enable=True)\n\t\tcmds.checkBox('trans_y',e=True,enable=True)\n\t\tcmds.checkBox('trans_z',e=True,enable=True)\n\t\tcmds.checkBox('trans_All',e=True,enable=True)\n\n\t\tcmds.checkBox('rot_x',e=True,enable=True)\n\t\tcmds.checkBox('rot_y',e=True,enable=True)\n\t\tcmds.checkBox('rot_z',e=True,enable=True)\n\t\tcmds.checkBox('rot_All',e=True,enable=True)\n\n\t\tcmds.checkBox('scl_x',e=True,enable=True)\n\t\tcmds.checkBox('scl_y',e=True,enable=True)\n\t\tcmds.checkBox('scl_z',e=True,enable=True)\n\t\tcmds.checkBox('scl_All',e=True,enable=True)\n\n\telif \"FromChannelBox\" == Status:\n\t\tcmds.checkBox('trans_x',e=True,enable=False)\n\t\tcmds.checkBox('trans_y',e=True,enable=False)\n\t\tcmds.checkBox('trans_z',e=True,enable=False)\n\t\tcmds.checkBox('trans_All',e=True,enable=False)\n\n\t\tcmds.checkBox('rot_x',e=True,enable=False)\n\t\tcmds.checkBox('rot_y',e=True,enable=False)\n\t\tcmds.checkBox('rot_z',e=True,enable=False)\n\t\tcmds.checkBox('rot_All',e=True,enable=False)\n\n\t\tcmds.checkBox('scl_x',e=True,enable=False)\n\t\tcmds.checkBox('scl_y',e=True,enable=False)\n\t\tcmds.checkBox('scl_z',e=True,enable=False)\n\t\tcmds.checkBox('scl_All',e=True,enable=False)\n\n\telif \"TimeSlider\"  == Status:\n\t\tcmds.floatField('StartTime',e=True,enable=False)\n\t\tcmds.floatField('EndTime',e=True,enable=False)\n\n\telif \"StartEnd\" == Status:\n\t\tcmds.floatField('StartTime',e=True,enable=True)\n\t\tcmds.floatField('EndTime',e=True,enable=True)\n\n#------------------------------------------------------------------------------------------------------------------------------------\n## mainGUI\nclass GUI(object):\n\n\tdef __init__(self):\n\t\tself.windowName = 'KeyReducrionTool'\n\t\tself.checkUI()\n\t\tself.window = self.createWindow()\n\t\tself.createUI()\n\n\t##create window\n\tdef createWindow(self):\n\t\twindow = cmds.window(self.windowName,title='KeyReducrionTool Ver.1.1.0',widthHeight=(290,420))\n\t\treturn window\n\n\t##callback\n\tdef toRadioButtonAllKeyable(self,btn):\n\t\tradioButtonStatus(\"AllKeyable\")\n\tdef toRadioButtonFromAttributes(self,btn):\n\t\tradioButtonStatus(\"FromAttributes\")\n\tdef toRadioButtonFromChannelBox(self,btn):\n\t\tradioButtonStatus(\"FromChannelBox\")\n\n\tdef toCheckBoxTAll(self,btn):\n\t\tcheckBoxStatus(\"TAll\",False)\n\tdef toCheckBoxTTrue(self,btn):\n\t\tcheckBoxStatus(\"T\",True)\n\tdef toCheckBoxTFalse(self,btn):\n\t\tcheckBoxStatus(\"T\",False)\n\n\tdef toCheckBoxRAll(self,btn):\n\t\tcheckBoxStatus(\"RAll\",False)\n\tdef toCheckBoxRTrue(self,btn):\n\t\tcheckBoxStatus(\"R\",True)\n\tdef toCheckBoxRFalse(self,btn):\n\t\tcheckBoxStatus(\"R\",False)\n\n\tdef toCheckBoxZAll(self,btn):\n\t\tcheckBoxStatus(\"ZAll\",False)\n\tdef toCheckBoxZTrue(self,btn):\n\t\tcheckBoxStatus(\"Z\",True)\n\tdef toCheckBoxZFalse(self,btn):\n\t\tcheckBoxStatus(\"Z\",False)\n\n\tdef toRadioButtonTimeSlider(self,btn):\n\t\tradioButtonStatus(\"TimeSlider\")\n\tdef toRadioButtonStartEnd(self,btn):\n\t\tradioButtonStatus(\"StartEnd\")\n\n\tdef toBake(self,btn):\n\t\tBakeFunction()\n\n\tdef toDelStatic(self,btn):\n\t\tDelStaticFunction()\n\n\tdef toReductKey(self,btn):\n\t\tReductKeyFunction()\n\n\t##create UI\n\tdef createUI(self):\n\t\tcmds.setParent(self.window)\n\t\tcmds.columnLayout('columnLayout01',width=290,height=470,adjustableColumn=False)\n\t\tcmds.columnLayout(parent='columnLayout01',adjustableColumn=True)\n\t\tcmds.frameLayout(label='Channels',width=288,borderStyle='in')\n\t\tChannelsRadioCollection = cmds.radioCollection()\n\t\tcmds.rowLayout(nc=4)\n\t\tcmds.text(label='',width=2,align='left')\n\t\tcmds.radioButton('AllKeyable',label=u'AllKeyable',sl=True,onc=self.toRadioButtonAllKeyable)\n\t\tcmds.radioButton('FromAttributes',label=u'FromAttributes',onc=self.toRadioButtonFromAttributes)\n\t\tcmds.radioButton('FromChannelBox',label=u'FromChannelBox',onc=self.toRadioButtonFromChannelBox)\n\t\tcmds.setParent('..')\n\t\tcmds.setParent('..')\n\n\n\t\tcmds.frameLayout(label='Select Attributes',width=288,borderStyle='in',collapse=True,collapsable=True,parent='columnLayout01')\n\t\tcmds.rowLayout(nc=6)\n\t\tcmds.text(label='    Translate:',width=80,align='left')\n\t\tcmds.checkBox('trans_x',label=u'X',value=True,enable=False,ofc=self.toCheckBoxTAll)\n\t\tcmds.checkBox('trans_y',label=u'Y',value=True,enable=False,ofc=self.toCheckBoxTAll)\n\t\tcmds.checkBox('trans_z',label=u'Z',value=True,enable=False,ofc=self.toCheckBoxTAll)\n\t\tcmds.checkBox('trans_All',label=u'All',value=True,enable=False,onc=self.toCheckBoxTTrue,ofc=self.toCheckBoxTFalse)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(adjustableColumn=True)\n\t\tcmds.separator(st='in')\n\t\tcmds.setParent('..')\n\n\t\tcmds.rowLayout(nc=5)\n\t\tcmds.text(label='    Rotate:',width=80,align='left')\n\t\tcmds.checkBox('rot_x',label=u'X',value=True,enable=False,ofc=self.toCheckBoxRAll)\n\t\tcmds.checkBox('rot_y',label=u'Y',value=True,enable=False,ofc=self.toCheckBoxRAll)\n\t\tcmds.checkBox('rot_z',label=u'Z',value=True,enable=False,ofc=self.toCheckBoxRAll)\n\t\tcmds.checkBox('rot_All',label=u'All',value=True,enable=False,onc=self.toCheckBoxRTrue,ofc=self.toCheckBoxRFalse)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(adjustableColumn=True)\n\t\tcmds.separator(st='in')\n\t\tcmds.setParent('..')\n\n\t\tcmds.rowLayout(nc=5)\n\t\tcmds.text(label='    Scale:',width=80,align='left')\n\t\tcmds.checkBox('scl_x',label=u'X',value=True,enable=False,ofc=self.toCheckBoxZAll)\n\t\tcmds.checkBox('scl_y',label=u'Y',value=True,enable=False,ofc=self.toCheckBoxZAll)\n\t\tcmds.checkBox('scl_z',label=u'Z',value=True,enable=False,ofc=self.toCheckBoxZAll)\n\t\tcmds.checkBox('scl_All',label=u'All',value=True,enable=False,onc=self.toCheckBoxZTrue,ofc=self.toCheckBoxZFalse)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(adjustableColumn=True)\n\t\tcmds.separator(st='in')\n\t\tcmds.setParent('..')\n\t\t\n\t\tcmds.columnLayout(parent='columnLayout01',width=288,adjustableColumn=True)\n\t\tcmds.frameLayout(label='Time Range',borderStyle='in')\n\t\tTimeRangeRadioCollection = cmds.radioCollection()\n\t\tcmds.rowLayout(nc=5)\n\t\tcmds.text(label='',width=2,align='left')\n\t\tcmds.radioButton('TimeSlider',label='TimeSlider',sl=True,onc=self.toRadioButtonTimeSlider)\n\t\tcmds.radioButton('StartEnd',label='Start/End:',width=80,onc=self.toRadioButtonStartEnd)\n\t\tcmds.floatField('StartTime',value=0,precision=3,step=1,enable=False)\n\t\tcmds.floatField('EndTime',value=10,precision=3,step=1,enable=False)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(parent='columnLayout01',width=288,adjustableColumn=True)\n\t\tcmds.frameLayout(label='Bake Simulation',borderStyle='in')\n\n\t\tcmds.rowLayout(nc=4)\n\t\tcmds.text(label='',width=5)\n\t\tcmds.checkBox('POK',label=u'Keep Unbaked',value=True)\n\t\tcmds.checkBox('Euler',label=u'Euler Filter',value=False)\n\t\tcmds.checkBox('Sim',label=u'Simulation',value=False)\n\t\tcmds.setParent('..')\n\n\t\tcmds.rowLayout(nc=4)\n\t\tcmds.text(label='    SampleBy:',width=70,align='left')\n\t\tcmds.floatField('bakeSample',value=1,precision=3,step=1,width=60)\n\t\tcmds.text(label='',width=45,align='left')\n\t\tcmds.button('Key Bake',width=100,label='Key Bake',c=self.toBake)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(parent='columnLayout01',width=288,adjustableColumn=True,cal='left')\n\t\tcmds.frameLayout(label='Delete static Key',borderStyle='in')\n\t\tcmds.rowLayout(nc=2)\n\t\tcmds.text(label='    Sample:',width=70,align='left')\n\t\tcmds.floatSliderGrp('DelstaticSample',field=True,min=0,max=0.1,precision=3,step=0.001,value=0.01,width=210,cw=(1,60),cal=(1,'left'))\n\t\tcmds.setParent('..')\n\t\t\n\t\tcmds.rowLayout(nc=2)\n\t\tcmds.text(label='',width=180,align='left')\n\t\tcmds.button('DelStaticKey',width=100,label='Del Static Key',c=self.toDelStatic)\n\t\tcmds.setParent('..')\n\n\t\tcmds.columnLayout(parent='columnLayout01',width=288,adjustableColumn=True)\n\t\tcmds.frameLayout(label='Key Reduction (0= flat and linear only)',borderStyle='in')\n\t\tcmds.rowLayout(nc=2)\n\t\tcmds.text(label='',width=5)\n\t\tcmds.checkBox('LockSelectedKey',label=u'Lock Selected Key',value=False)\n\t\tcmds.setParent('..')\n\n\t\tcmds.rowLayout(nc=2)\n\t\tcmds.text(label='    Sample:',width=70,align='left')\n\t\tcmds.floatSliderGrp('ReductKeySample',field=True,min=0.00,max=1.00,precision=3,step=0.01,value=0.5,width=210,cw=(1,60),cal=(1,'left'))\n\t\tcmds.setParent('..')\n\n\t\tcmds.rowLayout(nc=2)\n\t\tcmds.text(label='',width=180,align='left')\n\t\tcmds.button('ReductKey',width=100,label='Key Reduction',c=self.toReductKey)\n\t\tcmds.setParent('..')\n\n\t##check UI\n\tdef checkUI(self):\n\t\tif cmds.window(self.windowName,exists=True):\n\t\t\tcmds.deleteUI(self.windowName)\n\n\t##show window\n\tdef show(self):\n\t\tcmds.showWindow(self.window)\n\n#------------------------------------------------------------------------------------------------------------------------------------\n\ndef keyReductionTool():\n\tw = GUI()\n\tw.show()\n\nkeyReductionTool()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.cmds as cmds\nimport random\n \n \ndef matchTransform(s,d,pos,rot):\n    ##print d,s\n    w_trans = cmds.xform(d,ws = True, rp = True, q = True)\n    w_ros = cmds.xform(d,ws = True, ro = True, q = True)\n    order = cmds.xform(d,rotateOrder = True, q = True)\n    if pos:\n        cmds.xform(s,ws = True, t = w_trans)\n    if rot:\n        cmds.xform(s,rotateOrder = order)\n        cmds.xform(s,ws = True, ro = w_ros)\n         \n \n \ndef particle_exist():\n    partical =  cmds.ls(type = \"particle\")\n    if len(partical) != 0:\n        for i in partical:\n            if i.__contains__(\"_temp_particle\"):\n                return True\n \n \ndef create_target(object):\n    temp_null = cmds.spaceLocator(n = \"{0}_temp_target\".format(object))[0]\n    #print temp_null\n    matchTransform(temp_null,object,True,True)\n    return temp_null\n     \ndef create_front(object):\n    temp_null = cmds.spaceLocator(n = \"{0}_temp_front_indicator\".format(object))[0]\n    #print temp_null\n    matchTransform(temp_null,object,True,True)\n    return temp_null\n     \n \ndef simulation(object,target,conserve,weight):\n     \n    start = cmds.playbackOptions(min=True,query= True)\n    end = cmds.playbackOptions(max=True,query= True)\n                 \n    front = \"{0}_temp_front_indicator\".format(object)\n     \n    temp_cons = cmds.parentConstraint(object , target, n = \"temp_cons\",maintainOffset = True )\n     \n    #temp_cons2 = cmds.parentConstraint(object , front, n = \"temp_cons2\",maintainOffset = True )\n                 \n    cmds.bakeResults( target, sb=1,t=(start,end),simulation = True )\n             \n    cmds.delete(temp_cons)\n     \n    temp_particle = cmds.particle(n = \"{0}_temp_particle\".format(object), p = [0,0,0], c = conserve)[0]\n         \n    cmds.setAttr(\"{0}.particleRenderType\".format(temp_particle), 4)\n     \n    #match position of particle to target\n    matchTransform(temp_particle,target,True,True)\n     \n    #particle to move with target   \n    cmds.goal( temp_particle, g = target, w= weight )\n             \n    #partical will not be baked, a null need to creatge to transfer the animation data from particle to null    \n    target_control = cmds.spaceLocator(n = \"{0}_temp_target_control\".format(object))[0]\n                 \n    cmds.connectAttr( \"{0}.cachedWorldCentroid\".format(temp_particle), '{0}.translate'.format(target_control))\n     \n    object_parent = cmds.listRelatives(object, parent = True)       \n     \n    if object_parent:\n         \n        cmds.parent(front, object_parent )\n     \n    new_constraint = cmds.aimConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True,worldUpType = \"object\",worldUpObject = front)\n    #new_constraint = cmds.aimConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True,worldUpType = \"scene\")\n     \n    cmds.hide(target)\n    cmds.hide(target_control)\n \n     \n             \n \ndef simulation_translate(object,conserve,weight):\n     \n    start = cmds.playbackOptions(min=True,query= True)\n    end = cmds.playbackOptions(max=True,query= True)\n                 \n    target = cmds.spaceLocator(n = \"{0}_temp_target\".format(object))[0]\n     \n    temp_cons = cmds.parentConstraint(object , target, n = \"temp_cons\",maintainOffset = False )\n                 \n    cmds.bakeResults( target, sb=1,t=(start,end),simulation = True )\n             \n    cmds.delete(temp_cons)\n     \n    temp_particle = cmds.particle(n = \"{0}_temp_particle\".format(object), p = [0,0,0], c = conserve)[0]\n         \n    cmds.setAttr(\"{0}.particleRenderType\".format(temp_particle), 4)\n     \n    #match position of particle to target\n    matchTransform(temp_particle,target,True,True)\n     \n    #particle to move with target   \n    cmds.goal( temp_particle, g = target, w= weight )\n             \n    #partical will not be baked, a null need to creatge to transfer the animation data from particle to null    \n    target_control = cmds.spaceLocator(n = \"{0}_temp_target_control\".format(object))[0]\n                 \n    cmds.connectAttr( \"{0}.cachedWorldCentroid\".format(temp_particle), '{0}.translate'.format(target_control) )\n             \n    new_constraint = cmds.pointConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True)\n     \n    cmds.hide( target, target_control )\n \n \ndef change_btn_color(btn,f1,f2,f3):\n    cmds.button(btn, bgc = (f1,f2,f3),e = True)\n \n \n \ndef create_target_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        selection = cmds.ls(selection = True)\n        if len(selection) == 1:\n            global sel_object\n             \n            sel_object = selection[0]\n             \n            if cmds.getAttr(\"{0}.rotateX\".format(sel_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.rotateY\".format(sel_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.rotateZ\".format(sel_object), keyable = True,lock = True):\n                cmds.confirmDialog( title='Error', message='one or more rotate attributes are locked!!! unlock them first', button=['Cancel'])\n            else:\n                start = cmds.playbackOptions(min=True,query= True)\n                cmds.currentTime( start, edit=True )\n                global sel_target\n                sel_target = create_target(sel_object)\n                 \n             \n \n \n \ndef create_front_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        if cmds.objExists(\"{0}_temp_target\".format(sel_object)):\n            create_front(sel_object)\n     \n             \n \n \ndef simulation_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        if cmds.objExists(\"{0}_temp_target\".format(sel_object)) and cmds.objExists(\"{0}_temp_front_indicator\".format(sel_object)):\n            conserve = cmds.floatSlider( conserve_rotate , value=True, q = True )\n            weight = cmds.floatSlider( weight_rotate , value=True, q = True )\n            simulation(sel_object,sel_target,conserve,weight)\n            pairBlend_list = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")\n            #print \"dfadfa\",pairBlend_list\n            if pairBlend_list:\n                global pairBlend_\n                pairBlend_= pairBlend_list[0]\n                global node_x\n                node_x = get_animation_node(pairBlend_, \"_rotateX\")\n                global node_y\n                node_y = get_animation_node(pairBlend_, \"_rotateY\")\n                global node_z\n                node_z = get_animation_node(pairBlend_, \"_rotateZ\")\n            else:\n                cmds.confirmDialog(title='Oups', message='there are no keys', button=['Ok'])\n                 \n             \n            cmds.rowColumnLayout(hide_,visible = True,e= True)\n            cmds.checkBox( r_X, v = True, e= True )\n            cmds.checkBox( r_Y, v = True, e= True )\n            cmds.checkBox( r_Z, v = True, e= True )\n             \n         \n         \n \ndef simulation_translate_btn(*arg):\n     \n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        global sel_trans_object\n        sel_trans_object = cmds.ls(selection = True)[0]\n        if cmds.getAttr(\"{0}.translateX\".format(sel_trans_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.translateY\".format(sel_trans_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.translateZ\".format(sel_trans_object), keyable = True,lock = True):\n            cmds.confirmDialog( title='Error', message='one or more translate attributes are locked!!! unlock them first', button=['Cancel'])\n         \n        else:\n            conserve = cmds.floatSlider( conserve_translate , value=True, q = True )\n            weight = cmds.floatSlider( weight_translate , value=True, q = True )\n            simulation_translate(sel_trans_object,conserve,weight)\n \n \ndef conserve_onchange_rotate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(conserve_rotate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)):\n        cmds.setAttr(\"{0}_temp_particle.conserve\".format(sel_object), value)\n        print \"value change\"\n \ndef weight_onchange_rotate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(weight_rotate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)): \n        #print \"dfadfa\"\n        cmds.setAttr(\"{0}_temp_particle.goalWeight[0]\".format(sel_object), value)\n        print \"value change\"\n \n \ndef conserve_onchange_translate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(conserve_translate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        cmds.setAttr(\"{0}_temp_particle.conserve\".format(sel_trans_object), value)\n        print \"value change\"\n \ndef weight_onchange_translate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(weight_translate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        cmds.setAttr(\"{0}_temp_particle.goalWeight[0]\".format(sel_trans_object), value)\n        print \"value change\"\n \n         \ndef apply_rotate(*arg):\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)):\n        cmds.rowColumnLayout(hide_,visible = False,e= True)\n        start = cmds.playbackOptions(min=True,query= True)\n        end = cmds.playbackOptions(max=True,query= True)\n        cmds.select(sel_object)\n        if cmds.checkBox(rot_sep_layer,v= True, q = True):\n            layer_name = \"{0}_secondary_rotation\".format(sel_object)\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        else:\n            layer_name = \"overlap_rotate_layer\"\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        cmds.bakeResults(sel_object, sb=1,t=(start,end), disableImplicitControl = True, preserveOutsideKeys = True,\n            sparseAnimCurveBake = False, shape = True , simulation = True,bakeOnOverrideLayer = True,dl = layer_name)\n                 \n        cmds.delete(\"{0}_temp_target\".format(sel_object))\n        cmds.delete(\"{0}_temp_particle\".format(sel_object))\n        cmds.delete(\"{0}_temp_target_control\".format(sel_object))\n        cmds.delete(\"{0}_temp_front_indicator\".format(sel_object))\n     \n     \n    #cmds.delete(\"{0}_temp_aim\".format(sel_object))\n \ndef apply_translate(*arg):\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        start = cmds.playbackOptions(min=True,query= True)\n        end = cmds.playbackOptions(max=True,query= True)\n        cmds.select(sel_trans_object)\n        if cmds.checkBox(trans_sep_layer,v= True, q = True):\n            layer_name = \"{0}_secondary_translate\".format(sel_trans_object)\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        else:\n            layer_name = \"overlap_trans_layer\"\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n \n        cmds.bakeResults(sel_trans_object, sb=1,t=(start,end), disableImplicitControl = True, preserveOutsideKeys = True,\n        sparseAnimCurveBake = False, shape = True , simulation = True,bakeOnOverrideLayer = True,dl = layer_name)\n             \n             \n        cmds.delete(\"{0}_temp_target\".format(sel_trans_object))\n        cmds.delete(\"{0}_temp_particle\".format(sel_trans_object))\n        cmds.delete(\"{0}_temp_target_control\".format(sel_trans_object))\n         \n     \n     \ndef clean2(*arg):\n    list = [\"{0}_temp_target\".format(sel_object),\"{0}_temp_particle\".format(sel_object),\"{0}_temp_target_control\".format(sel_object),\n    \"{0}_temp_aim\".format(sel_object),\"{0}_temp_front_indicator\".format(sel_object)]\n    for d in list:\n        if cmds.objExists(d):\n            cmds.delete(d)\n    cmds.rowColumnLayout(hide_,visible = False,e= True)\n     \n \ndef clean(*arg):\n    list = [\"_temp_target\",\"_temp_particle\",\"_temp_target_control\",\"_temp_front_indicator\",\n    \"_temp_aim\"]\n    for d in list:\n        for i in cmds.ls():\n            if i.__contains__(d):\n                if cmds.objExists(i):\n                    cmds.delete(i)\n    cmds.rowColumnLayout(hide_,visible = False,e= True)\n \n \n \n \ndef get_animation_node(pairBlend_, attr):\n    for a in cmds.listConnections(pairBlend_,source = True ):\n        if a.__contains__(attr):\n            return a\n \n \n \ndef X_off(*arg):\n    print node_x\n    print pairBlend_\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]   \n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_x)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_x),\"{0}.inRotate1.inRotateX1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateX\".format(pairBlend_),\"{0}.rotate.rotateX\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_x),\"{0}.rotate.rotateX\".format(sel_object))\n \ndef X_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_x)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_x),\"{0}.rotate.rotateX\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_x),\"{0}.inRotate1.inRotateX1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateX\".format(pairBlend_),\"{0}.rotate.rotateX\".format(sel_object))\n         \n \ndef Y_off(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_y)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_y),\"{0}.inRotate1.inRotateY1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateY\".format(pairBlend_),\"{0}.rotate.rotateY\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_y),\"{0}.rotate.rotateY\".format(sel_object))\n \ndef Y_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_y)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_y),\"{0}.rotate.rotateY\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_y),\"{0}.inRotate1.inRotateY1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateY\".format(pairBlend_),\"{0}.rotate.rotateY\".format(sel_object))\n         \n         \n     \ndef Z_off(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_z)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_z),\"{0}.inRotate1.inRotateZ1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateZ\".format(pairBlend_),\"{0}.rotate.rotateZ\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_z),\"{0}.rotate.rotateZ\".format(sel_object))\ndef Z_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_z)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_z),\"{0}.rotate.rotateZ\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_z),\"{0}.inRotate1.inRotateZ1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateZ\".format(pairBlend_),\"{0}.rotate.rotateZ\".format(sel_object))\n         \ndef rot_sep_layer_on(*arg):\n    cmds.checkBox(rot_one_layer, value = False, e = True)\n     \ndef rot_sep_layer_off(*arg):\n    cmds.checkBox(rot_one_layer, value = True, e = True)\n \n \ndef rot_one_layer_on(*arg):\n    cmds.checkBox(rot_sep_layer, value = False, e = True)\n     \ndef rot_one_layer_off(*arg):\n    cmds.checkBox(rot_sep_layer, value = True, e = True)\n \n \ndef trans_sep_layer_on(*arg):\n    cmds.checkBox(trans_one_layer, value = False, e = True)\n     \ndef trans_sep_layer_off(*arg):\n    cmds.checkBox(trans_one_layer, value = True, e = True)\n \n \ndef trans_one_layer_on(*arg):\n    cmds.checkBox(trans_sep_layer, value = False, e = True)\n     \ndef trans_one_layer_off(*arg):\n    cmds.checkBox(trans_sep_layer, value = True, e = True)  \n     \n \n     \nwindowID = \"mywindowID\"\nif cmds.window(windowID, exists = True):\n    cmds.deleteUI(windowID)\n \nwindow = cmds.window(windowID, title = \"SecondaryAnimation_v7.1\")\nHeadform = cmds.formLayout()\nHeadtabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)\n \nFK = cmds.formLayout(numberOfDivisions=100, p=Headtabs)\ncmds.rowColumnLayout( numberOfColumns=1)\nta = cmds.button(l = 'Create Target', c = create_target_btn, w = 300)\ncmds.separator( style='none',h = 5)\nfr = cmds.button(l = 'Create up vector object', c = create_front_btn, w = 300)\ncmds.separator( style='none',h = 5)\nsi = cmds.button(l = 'Simulate', c = simulation_btn)\ncmds.separator( style='none',h = 5)\n \n#hide_ = cmds.frameLayout(\"isolate individual axis\", collapse = True, collapsable = True, visible = False)\n \nhide_ = cmds.rowColumnLayout(numberOfColumns=3, columnWidth=[(1, 100),(2,100),(3, 100)],visible = False )\nr_X = cmds.checkBox( label='Isolate X', v = True, onc = X_on, ofc = X_off, al = 'center' )\nr_Y = cmds.checkBox( label='Isolate Y', v = True, onc = Y_on, ofc = Y_off, al = 'center' )\nr_Z = cmds.checkBox( label='Isolate Z', v = True, onc = Z_on, ofc = Z_off, al = 'center')\n \ncmds.setParent(\"..\")\n \n \n#cmds.separator( style='none',h = 5)\ncmds.text(l = 'Overlap')\nconserve_rotate = cmds.floatSlider( min=0.5, max=1, value=0.8, step=0.05, dc = conserve_onchange_rotate )\ncmds.separator( style='none',h = 5)\n \ncmds.text(l = 'Weight')\nweight_rotate = cmds.floatSlider( min=0.5, max=1, value=0.7, step=0.05, dc = weight_onchange_rotate )\ncmds.separator( style='none',h = 5)\n \n \n \ncmds.rowColumnLayout( numberOfColumns=3, columnWidth=[(1, 100),(2,60),(3, 110)] )\nap = cmds.button(l = 'Apply', c = apply_rotate)\ncmds.separator( style='none')\nrot_sep_layer = cmds.checkBox( label='To seperate layer', v = False, onc = rot_sep_layer_on, ofc = rot_sep_layer_off )\ncmds.button(l = 'Cancel', c = clean)\ncmds.separator( style='none')\nrot_one_layer = cmds.checkBox( label='To one layer', v = True, onc = rot_one_layer_on, ofc = rot_one_layer_off )\n \n#==============================================================\nIK = cmds.formLayout(numberOfDivisions=100, p=Headtabs)\n \ncmds.rowColumnLayout( numberOfColumns=1)\ncmds.button(l = 'Simulate', c = simulation_translate_btn , w = 300)\ncmds.separator( style='none',h = 5)\n \ncmds.text(l = 'Overlap')\nconserve_translate = cmds.floatSlider( min=0.5, max=1, value=0.8, step=0.05, dc = conserve_onchange_translate )\ncmds.separator( style='none',h = 5)\n \n \ncmds.text(l = 'Weight')\nweight_translate = cmds.floatSlider( min=0.5, max=1, value=0.7, step=0.05, dc = weight_onchange_translate )\ncmds.separator( style='none',h = 5)\n \n \ncmds.rowColumnLayout( numberOfColumns=3, columnWidth=[(1, 100),(2,60),(3, 110)] )\ncmds.button(l = 'Apply', c = apply_translate)\ncmds.separator( style='none')\ntrans_sep_layer = cmds.checkBox( label='To separate layer', v = False, onc = trans_sep_layer_on, ofc = trans_sep_layer_off )\ncmds.button(l = 'Cancel', c = clean)\ncmds.separator( style='none')\ntrans_one_layer = cmds.checkBox( label='To one layer', v = True, onc = trans_one_layer_on, ofc = trans_one_layer_off )\n \n \ncmds.tabLayout(Headtabs, edit=True, tabLabel=((FK, \"Rotate\"), (IK, \"Translate\")))\n \ncmds.showWindow()\n \n " 
+        -enableBackground 0
+        -align "center" 
+        -label "import maya.cmds as cmds\nimport random\n \n \ndef matchTransform(s,..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "secondaryAnim" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "# https://vimeo.com/257551619\n# auto generated secondary animation by Junjie Wang \n\nimport maya.cmds as cmds\nimport random\n \n \ndef matchTransform(s,d,pos,rot):\n    ##print d,s\n    w_trans = cmds.xform(d,ws = True, rp = True, q = True)\n    w_ros = cmds.xform(d,ws = True, ro = True, q = True)\n    order = cmds.xform(d,rotateOrder = True, q = True)\n    if pos:\n        cmds.xform(s,ws = True, t = w_trans)\n    if rot:\n        cmds.xform(s,rotateOrder = order)\n        cmds.xform(s,ws = True, ro = w_ros)\n         \n \n \ndef particle_exist():\n    partical =  cmds.ls(type = \"particle\")\n    if len(partical) != 0:\n        for i in partical:\n            if i.__contains__(\"_temp_particle\"):\n                return True\n \n \ndef create_target(object):\n    temp_null = cmds.spaceLocator(n = \"{0}_temp_target\".format(object))[0]\n    #print temp_null\n    matchTransform(temp_null,object,True,True)\n    return temp_null\n     \ndef create_front(object):\n    temp_null = cmds.spaceLocator(n = \"{0}_temp_front_indicator\".format(object))[0]\n    #print temp_null\n    matchTransform(temp_null,object,True,True)\n    return temp_null\n     \n \ndef simulation(object,target,conserve,weight):\n     \n    start = cmds.playbackOptions(min=True,query= True)\n    end = cmds.playbackOptions(max=True,query= True)\n                 \n    front = \"{0}_temp_front_indicator\".format(object)\n     \n    temp_cons = cmds.parentConstraint(object , target, n = \"temp_cons\",maintainOffset = True )\n     \n    #temp_cons2 = cmds.parentConstraint(object , front, n = \"temp_cons2\",maintainOffset = True )\n                 \n    cmds.bakeResults( target, sb=1,t=(start,end),simulation = True )\n             \n    cmds.delete(temp_cons)\n     \n    temp_particle = cmds.particle(n = \"{0}_temp_particle\".format(object), p = [0,0,0], c = conserve)[0]\n         \n    cmds.setAttr(\"{0}.particleRenderType\".format(temp_particle), 4)\n     \n    #match position of particle to target\n    matchTransform(temp_particle,target,True,True)\n     \n    #particle to move with target   \n    cmds.goal( temp_particle, g = target, w= weight )\n             \n    #partical will not be baked, a null need to creatge to transfer the animation data from particle to null    \n    target_control = cmds.spaceLocator(n = \"{0}_temp_target_control\".format(object))[0]\n                 \n    cmds.connectAttr( \"{0}.cachedWorldCentroid\".format(temp_particle), '{0}.translate'.format(target_control))\n     \n    object_parent = cmds.listRelatives(object, parent = True)       \n     \n    if object_parent:\n         \n        cmds.parent(front, object_parent )\n     \n    new_constraint = cmds.aimConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True,worldUpType = \"object\",worldUpObject = front)\n    #new_constraint = cmds.aimConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True,worldUpType = \"scene\")\n     \n    cmds.hide(target)\n    cmds.hide(target_control)\n \n     \n             \n \ndef simulation_translate(object,conserve,weight):\n     \n    start = cmds.playbackOptions(min=True,query= True)\n    end = cmds.playbackOptions(max=True,query= True)\n                 \n    target = cmds.spaceLocator(n = \"{0}_temp_target\".format(object))[0]\n     \n    temp_cons = cmds.parentConstraint(object , target, n = \"temp_cons\",maintainOffset = False )\n                 \n    cmds.bakeResults( target, sb=1,t=(start,end),simulation = True )\n             \n    cmds.delete(temp_cons)\n     \n    temp_particle = cmds.particle(n = \"{0}_temp_particle\".format(object), p = [0,0,0], c = conserve)[0]\n         \n    cmds.setAttr(\"{0}.particleRenderType\".format(temp_particle), 4)\n     \n    #match position of particle to target\n    matchTransform(temp_particle,target,True,True)\n     \n    #particle to move with target   \n    cmds.goal( temp_particle, g = target, w= weight )\n             \n    #partical will not be baked, a null need to creatge to transfer the animation data from particle to null    \n    target_control = cmds.spaceLocator(n = \"{0}_temp_target_control\".format(object))[0]\n                 \n    cmds.connectAttr( \"{0}.cachedWorldCentroid\".format(temp_particle), '{0}.translate'.format(target_control) )\n             \n    new_constraint = cmds.pointConstraint(target_control, object , n = \"{0}_temp_aim\".format(object),maintainOffset = True)\n     \n    cmds.hide( target, target_control )\n \n \ndef change_btn_color(btn,f1,f2,f3):\n    cmds.button(btn, bgc = (f1,f2,f3),e = True)\n \n \n \ndef create_target_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        selection = cmds.ls(selection = True)\n        if len(selection) == 1:\n            global sel_object\n             \n            sel_object = selection[0]\n             \n            if cmds.getAttr(\"{0}.rotateX\".format(sel_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.rotateY\".format(sel_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.rotateZ\".format(sel_object), keyable = True,lock = True):\n                cmds.confirmDialog( title='Error', message='one or more rotate attributes are locked!!! unlock them first', button=['Cancel'])\n            else:\n                start = cmds.playbackOptions(min=True,query= True)\n                cmds.currentTime( start, edit=True )\n                global sel_target\n                sel_target = create_target(sel_object)\n                 \n             \n \n \n \ndef create_front_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        if cmds.objExists(\"{0}_temp_target\".format(sel_object)):\n            create_front(sel_object)\n     \n             \n \n \ndef simulation_btn(*arg):\n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        if cmds.objExists(\"{0}_temp_target\".format(sel_object)) and cmds.objExists(\"{0}_temp_front_indicator\".format(sel_object)):\n            conserve = cmds.floatSlider( conserve_rotate , value=True, q = True )\n            weight = cmds.floatSlider( weight_rotate , value=True, q = True )\n            simulation(sel_object,sel_target,conserve,weight)\n            pairBlend_list = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")\n            #print \"dfadfa\",pairBlend_list\n            if pairBlend_list:\n                global pairBlend_\n                pairBlend_= pairBlend_list[0]\n                global node_x\n                node_x = get_animation_node(pairBlend_, \"_rotateX\")\n                global node_y\n                node_y = get_animation_node(pairBlend_, \"_rotateY\")\n                global node_z\n                node_z = get_animation_node(pairBlend_, \"_rotateZ\")\n            else:\n                cmds.confirmDialog(title='Oups', message='there are no keys', button=['Ok'])\n                 \n             \n            cmds.rowColumnLayout(hide_,visible = True,e= True)\n            cmds.checkBox( r_X, v = True, e= True )\n            cmds.checkBox( r_Y, v = True, e= True )\n            cmds.checkBox( r_Z, v = True, e= True )\n             \n         \n         \n \ndef simulation_translate_btn(*arg):\n     \n    if particle_exist():\n        cmds.confirmDialog(title='Oups', message='simulation is in process, must be applied before doing the next one', button=['Ok'])\n    else:\n        global sel_trans_object\n        sel_trans_object = cmds.ls(selection = True)[0]\n        if cmds.getAttr(\"{0}.translateX\".format(sel_trans_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.translateY\".format(sel_trans_object), keyable = True,lock = True) or cmds.getAttr(\"{0}.translateZ\".format(sel_trans_object), keyable = True,lock = True):\n            cmds.confirmDialog( title='Error', message='one or more translate attributes are locked!!! unlock them first', button=['Cancel'])\n         \n        else:\n            conserve = cmds.floatSlider( conserve_translate , value=True, q = True )\n            weight = cmds.floatSlider( weight_translate , value=True, q = True )\n            simulation_translate(sel_trans_object,conserve,weight)\n \n \ndef conserve_onchange_rotate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(conserve_rotate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)):\n        cmds.setAttr(\"{0}_temp_particle.conserve\".format(sel_object), value)\n        print \"value change\"\n \ndef weight_onchange_rotate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(weight_rotate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)): \n        #print \"dfadfa\"\n        cmds.setAttr(\"{0}_temp_particle.goalWeight[0]\".format(sel_object), value)\n        print \"value change\"\n \n \ndef conserve_onchange_translate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(conserve_translate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        cmds.setAttr(\"{0}_temp_particle.conserve\".format(sel_trans_object), value)\n        print \"value change\"\n \ndef weight_onchange_translate(*arg):\n    #particle = \"{0}_temp_particle\".format(object)\n    value = cmds.floatSlider(weight_translate,value = True, query = True)\n    #print value\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        cmds.setAttr(\"{0}_temp_particle.goalWeight[0]\".format(sel_trans_object), value)\n        print \"value change\"\n \n         \ndef apply_rotate(*arg):\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_object)):\n        cmds.rowColumnLayout(hide_,visible = False,e= True)\n        start = cmds.playbackOptions(min=True,query= True)\n        end = cmds.playbackOptions(max=True,query= True)\n        cmds.select(sel_object)\n        if cmds.checkBox(rot_sep_layer,v= True, q = True):\n            layer_name = \"{0}_secondary_rotation\".format(sel_object)\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        else:\n            layer_name = \"overlap_rotate_layer\"\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        cmds.bakeResults(sel_object, sb=1,t=(start,end), disableImplicitControl = True, preserveOutsideKeys = True,\n            sparseAnimCurveBake = False, shape = True , simulation = True,bakeOnOverrideLayer = True,dl = layer_name)\n                 \n        cmds.delete(\"{0}_temp_target\".format(sel_object))\n        cmds.delete(\"{0}_temp_particle\".format(sel_object))\n        cmds.delete(\"{0}_temp_target_control\".format(sel_object))\n        cmds.delete(\"{0}_temp_front_indicator\".format(sel_object))\n     \n     \n    #cmds.delete(\"{0}_temp_aim\".format(sel_object))\n \ndef apply_translate(*arg):\n    if cmds.objExists(\"{0}_temp_particle\".format(sel_trans_object)):\n        start = cmds.playbackOptions(min=True,query= True)\n        end = cmds.playbackOptions(max=True,query= True)\n        cmds.select(sel_trans_object)\n        if cmds.checkBox(trans_sep_layer,v= True, q = True):\n            layer_name = \"{0}_secondary_translate\".format(sel_trans_object)\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n             \n        else:\n            layer_name = \"overlap_trans_layer\"\n            if not cmds.animLayer(layer_name, exists = True, q = True):\n                anim_layer = cmds.animLayer(layer_name,override=True,passthrough = True)\n \n        cmds.bakeResults(sel_trans_object, sb=1,t=(start,end), disableImplicitControl = True, preserveOutsideKeys = True,\n        sparseAnimCurveBake = False, shape = True , simulation = True,bakeOnOverrideLayer = True,dl = layer_name)\n             \n             \n        cmds.delete(\"{0}_temp_target\".format(sel_trans_object))\n        cmds.delete(\"{0}_temp_particle\".format(sel_trans_object))\n        cmds.delete(\"{0}_temp_target_control\".format(sel_trans_object))\n         \n     \n     \ndef clean2(*arg):\n    list = [\"{0}_temp_target\".format(sel_object),\"{0}_temp_particle\".format(sel_object),\"{0}_temp_target_control\".format(sel_object),\n    \"{0}_temp_aim\".format(sel_object),\"{0}_temp_front_indicator\".format(sel_object)]\n    for d in list:\n        if cmds.objExists(d):\n            cmds.delete(d)\n    cmds.rowColumnLayout(hide_,visible = False,e= True)\n     \n \ndef clean(*arg):\n    list = [\"_temp_target\",\"_temp_particle\",\"_temp_target_control\",\"_temp_front_indicator\",\n    \"_temp_aim\"]\n    for d in list:\n        for i in cmds.ls():\n            if i.__contains__(d):\n                if cmds.objExists(i):\n                    cmds.delete(i)\n    cmds.rowColumnLayout(hide_,visible = False,e= True)\n \n \n \n \ndef get_animation_node(pairBlend_, attr):\n    for a in cmds.listConnections(pairBlend_,source = True ):\n        if a.__contains__(attr):\n            return a\n \n \n \ndef X_off(*arg):\n    print node_x\n    print pairBlend_\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]   \n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_x)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_x),\"{0}.inRotate1.inRotateX1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateX\".format(pairBlend_),\"{0}.rotate.rotateX\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_x),\"{0}.rotate.rotateX\".format(sel_object))\n \ndef X_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_x)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_x),\"{0}.rotate.rotateX\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_x),\"{0}.inRotate1.inRotateX1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateX\".format(pairBlend_),\"{0}.rotate.rotateX\".format(sel_object))\n         \n \ndef Y_off(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_y)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_y),\"{0}.inRotate1.inRotateY1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateY\".format(pairBlend_),\"{0}.rotate.rotateY\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_y),\"{0}.rotate.rotateY\".format(sel_object))\n \ndef Y_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_y)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_y),\"{0}.rotate.rotateY\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_y),\"{0}.inRotate1.inRotateY1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateY\".format(pairBlend_),\"{0}.rotate.rotateY\".format(sel_object))\n         \n         \n     \ndef Z_off(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_)and cmds.objExists(\"{0}.output\".format(node_z)):\n        cmds.disconnectAttr(\"{0}.output\".format(node_z),\"{0}.inRotate1.inRotateZ1\".format(pairBlend_))\n        cmds.disconnectAttr(\"{0}.outRotate.outRotateZ\".format(pairBlend_),\"{0}.rotate.rotateZ\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_z),\"{0}.rotate.rotateZ\".format(sel_object))\ndef Z_on(*arg):\n    #pairBlend_ = cmds.listConnections(\"{0}_temp_aim\".format(sel_object),type = \"pairBlend\")[0]\n    if cmds.objExists(pairBlend_) and cmds.objExists(\" {0}.output\".format(node_z)):\n        cmds.disconnectAttr(\" {0}.output\".format(node_z),\"{0}.rotate.rotateZ\".format(sel_object))\n        cmds.connectAttr(\"{0}.output\".format(node_z),\"{0}.inRotate1.inRotateZ1\".format(pairBlend_))\n        cmds.connectAttr(\"{0}.outRotate.outRotateZ\".format(pairBlend_),\"{0}.rotate.rotateZ\".format(sel_object))\n         \ndef rot_sep_layer_on(*arg):\n    cmds.checkBox(rot_one_layer, value = False, e = True)\n     \ndef rot_sep_layer_off(*arg):\n    cmds.checkBox(rot_one_layer, value = True, e = True)\n \n \ndef rot_one_layer_on(*arg):\n    cmds.checkBox(rot_sep_layer, value = False, e = True)\n     \ndef rot_one_layer_off(*arg):\n    cmds.checkBox(rot_sep_layer, value = True, e = True)\n \n \ndef trans_sep_layer_on(*arg):\n    cmds.checkBox(trans_one_layer, value = False, e = True)\n     \ndef trans_sep_layer_off(*arg):\n    cmds.checkBox(trans_one_layer, value = True, e = True)\n \n \ndef trans_one_layer_on(*arg):\n    cmds.checkBox(trans_sep_layer, value = False, e = True)\n     \ndef trans_one_layer_off(*arg):\n    cmds.checkBox(trans_sep_layer, value = True, e = True)  \n     \n \n     \nwindowID = \"mywindowID\"\nif cmds.window(windowID, exists = True):\n    cmds.deleteUI(windowID)\n \nwindow = cmds.window(windowID, title = \"SecondaryAnimation_v7.1\")\nHeadform = cmds.formLayout()\nHeadtabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)\n \nFK = cmds.formLayout(numberOfDivisions=100, p=Headtabs)\ncmds.rowColumnLayout( numberOfColumns=1)\nta = cmds.button(l = 'Create Target', c = create_target_btn, w = 300)\ncmds.separator( style='none',h = 5)\nfr = cmds.button(l = 'Create up vector object', c = create_front_btn, w = 300)\ncmds.separator( style='none',h = 5)\nsi = cmds.button(l = 'Simulate', c = simulation_btn)\ncmds.separator( style='none',h = 5)\n \n#hide_ = cmds.frameLayout(\"isolate individual axis\", collapse = True, collapsable = True, visible = False)\n \nhide_ = cmds.rowColumnLayout(numberOfColumns=3, columnWidth=[(1, 100),(2,100),(3, 100)],visible = False )\nr_X = cmds.checkBox( label='Isolate X', v = True, onc = X_on, ofc = X_off, al = 'center' )\nr_Y = cmds.checkBox( label='Isolate Y', v = True, onc = Y_on, ofc = Y_off, al = 'center' )\nr_Z = cmds.checkBox( label='Isolate Z', v = True, onc = Z_on, ofc = Z_off, al = 'center')\n \ncmds.setParent(\"..\")\n \n \n#cmds.separator( style='none',h = 5)\ncmds.text(l = 'Overlap')\nconserve_rotate = cmds.floatSlider( min=0.5, max=1, value=0.8, step=0.05, dc = conserve_onchange_rotate )\ncmds.separator( style='none',h = 5)\n \ncmds.text(l = 'Weight')\nweight_rotate = cmds.floatSlider( min=0.5, max=1, value=0.7, step=0.05, dc = weight_onchange_rotate )\ncmds.separator( style='none',h = 5)\n \n \n \ncmds.rowColumnLayout( numberOfColumns=3, columnWidth=[(1, 100),(2,60),(3, 110)] )\nap = cmds.button(l = 'Apply', c = apply_rotate)\ncmds.separator( style='none')\nrot_sep_layer = cmds.checkBox( label='To seperate layer', v = False, onc = rot_sep_layer_on, ofc = rot_sep_layer_off )\ncmds.button(l = 'Cancel', c = clean)\ncmds.separator( style='none')\nrot_one_layer = cmds.checkBox( label='To one layer', v = True, onc = rot_one_layer_on, ofc = rot_one_layer_off )\n \n#==============================================================\nIK = cmds.formLayout(numberOfDivisions=100, p=Headtabs)\n \ncmds.rowColumnLayout( numberOfColumns=1)\ncmds.button(l = 'Simulate', c = simulation_translate_btn , w = 300)\ncmds.separator( style='none',h = 5)\n \ncmds.text(l = 'Overlap')\nconserve_translate = cmds.floatSlider( min=0.5, max=1, value=0.8, step=0.05, dc = conserve_onchange_translate )\ncmds.separator( style='none',h = 5)\n \n \ncmds.text(l = 'Weight')\nweight_translate = cmds.floatSlider( min=0.5, max=1, value=0.7, step=0.05, dc = weight_onchange_translate )\ncmds.separator( style='none',h = 5)\n \n \ncmds.rowColumnLayout( numberOfColumns=3, columnWidth=[(1, 100),(2,60),(3, 110)] )\ncmds.button(l = 'Apply', c = apply_translate)\ncmds.separator( style='none')\ntrans_sep_layer = cmds.checkBox( label='To separate layer', v = False, onc = trans_sep_layer_on, ofc = trans_sep_layer_off )\ncmds.button(l = 'Cancel', c = clean)\ncmds.separator( style='none')\ntrans_one_layer = cmds.checkBox( label='To one layer', v = True, onc = trans_one_layer_on, ofc = trans_one_layer_off )\n \n \ncmds.tabLayout(Headtabs, edit=True, tabLabel=((FK, \"Rotate\"), (IK, \"Translate\")))\n \ncmds.showWindow()\n \n " 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "playback" 
+        -enableBackground 0
+        -align "center" 
+        -label "int $rangeStartFrame = `playbackOptions -q -min`;\n\ncurrentTime -..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "playback" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "int $rangeStartFrame = `playbackOptions -q -min`;\n\ncurrentTime -e $rangeStartFrame;\nplaybackOptions -playbackSpeed 0 -loop \"once\" -by 1;\nplayButtonForward;\nplaybackOptions -playbackSpeed 1 -loop \"continuous\";\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import pymel.core as pm\nimport mog_ikFkSwitch as mog_ikFkSwitch\n..." 
+        -enableBackground 0
+        -align "center" 
+        -label "import pymel.core as pm\nimport mog_ikFkSwitch as mog_ikFkSwitch\n..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "IKFK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import pymel.core as pm\nimport mog_ikFkSwitch as mog_ikFkSwitch\nreload(mog_ikFkSwitch)\nmog_ikFkSwitch.FkIk_UI()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 
