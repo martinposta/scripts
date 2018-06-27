@@ -1,0 +1,47 @@
+// Spring 1.04.18 - install file
+
+global string $gShelfTopLevel;
+string $currentShelf = `tabLayout -query -selectTab $gShelfTopLevel`;
+setParent $currentShelf;
+string $asInstallScriptLocation=`asInstallScriptLocation`;
+string $iconExt="png";
+string $icon=$asInstallScriptLocation+"LMspringFiles/icons/SpringPrevisIcon."+$iconExt;
+string $icon2=$asInstallScriptLocation+"LMspringFiles/icons/SpringBakeIcon."+$iconExt;
+
+
+// Create LMSpring shelf buttons
+shelfButton
+        -annotation "SpringPrevis" 
+        -label "SpringPrevis" 
+        -image $icon 
+        -image1 $icon 
+        -style "iconOnly" 
+        -command "#######################################################################################\n#                                                                                     #\n#                            SPRING PREVIS 1.04.18                                    #\n#                  by Luismi Herrera. Twitter: @luismiherrera                         #\n#                                                                                     #\n# 1. Select something (normaly an animation control, but it could be anything).       #\n# 2. Execute SPRING PREVIS script (by clicking on the shelf icon).                    #\n# 3. Change or animate 'Goal Weight[0]' value (under 'luismiParticleShape') until     #\n#    you are happy with the result.                                                   #\n# 4. Execute SPRING BAKE script (by clicking on the shelf icon).                      #\n#                                                                                     #\n#######################################################################################\n\n\nimport maya.cmds as cmds\n\nminTime = cmds.playbackOptions(minTime=True, query=True)\nmaxTime = cmds.playbackOptions(maxTime=True, query=True)\nsel = cmds.ls(selection=True)\n\nif len(sel) == 0:\n    cmds.warning( \"Nothing Selected\" ) \nelif cmds.objExists('luismiParticle'):\n    cmds.warning( \"luismiParticle already EXISTS!\" )\nelse:\n    cmds.currentTime( minTime, edit=True )\n    selLoc = cmds.spaceLocator(name='OriginalPosition_Loc')\n    cmds.particle(p=[(0, 0, 0)], name='luismiParticle')\n    tempConst = cmds.parentConstraint(sel,selLoc,mo=False)\n    cmds.bakeResults(selLoc, t=(minTime,maxTime))\n    cmds.delete(tempConst)\n    tempConst2 = cmds.parentConstraint(selLoc,'luismiParticle',mo=False)\n    cmds.delete(tempConst2)\n    cmds.goal( 'luismiParticle', g=selLoc, w=.55)\n    cmds.spaceLocator(name='physicsLoc')\n    cmds.connectAttr('luismiParticleShape.worldCentroid', 'physicsLoc.translate')\n    tempConst3 = cmds.pointConstraint('physicsLoc', sel, mo=True)\n    cmds.select('luismiParticle')"  
+        -sourceType "python" 
+            
+	slfBtnSpringPrevis; // name of the button
+	
+shelfButton
+        -annotation "SpringBake" 
+        -label "SpringBake" 
+        -image $icon2 
+        -image1 $icon2 
+        -style "iconOnly" 
+        -command "##################################################################\n#                                                                #\n#                      SPRING BAKE 1.04.18                       #\n#            by Luismi Herrera. Twitter: @luismiherrera          #\n#                                                                #\n#  1. Adjust the Range Slider to chose frames to be baked.       #\n#  2. Execute SPRING BAKE by clicking on the shelf icon.         #\n#                                                                #\n##################################################################\n\nimport maya.cmds as cmds\n\nminTime = cmds.playbackOptions(minTime=True, query=True)\nmaxTime = cmds.playbackOptions(maxTime=True, query=True)\n\nif cmds.objExists('luismiParticle'):\n    cmds.bakeResults('physicsLoc', t=(minTime,maxTime), simulation=True)\n    cmds.delete(selLoc, 'luismiParticle')\n    cmds.bakeResults(sel, t=(minTime,maxTime))\n    cmds.delete('physicsLoc')\nelse:\n    cmds.warning( \"Nothing to bake. Use SPRING PREVIS first.\" )" 
+        -sourceType "python" 
+            
+	slfBtnSpringBake; // name of the button
+	
+global proc asInstallScriptLocator (){}
+
+global proc string asInstallScriptLocation ()
+{
+string $whatIs=`whatIs asInstallScriptLocator`;
+string $fullPath=`substring $whatIs 25 999`;
+string $buffer[];
+int $numTok=`tokenize $fullPath "/" $buffer`;
+int $numLetters=size($fullPath);
+int $numLettersLastFolder=size($buffer[$numTok-1]);
+string $scriptLocation=`substring $fullPath 1 ($numLetters-$numLettersLastFolder)`;
+return $scriptLocation;
+}

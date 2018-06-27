@@ -1,0 +1,28 @@
+How to use LMspring:
+
+#######################################################################################
+#                                                                                     #
+#                            SPRING PREVIS 1.04.18                                    #
+#                  by Luismi Herrera. Twitter: @luismiherrera                         #
+#                                                                                     #
+# 1. Select something (normaly an animation control, but it could be anything).       #
+# 2. Execute SPRING PREVIS script (by clicking on the shelf icon).                    #
+# 3. Change or animate the 'Goal Weight[0]' value (under 'luismiParticleShape') until #
+#    you are happy with the result.                                                   #
+# 4. Execute SPRING BAKE script (by clicking on the shelf icon).                      #
+#                                                                                     #
+#######################################################################################
+
+###########################################################################
+#                                                                	  #
+#                      SPRING BAKE 1.04.18                       	  #
+#            by Luismi Herrera. Twitter: @luismiherrera          	  #
+#                                                                	  #
+#  1. Your can adjust the Range Slider to chose the frames to be baked.   #
+#  2. Execute SPRING BAKE by clicking on the shelf icon.         	  #
+#                                                                	  #
+###########################################################################
+
+
+
+twitter: @luismiherrera

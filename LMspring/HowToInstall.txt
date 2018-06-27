@@ -1,0 +1,16 @@
+How to install LMspring:
+
+First place the LMspring folder where you want it to be.
+for example: "C:/Users/YOU/Documents/maya/scripts/LMspring".
+
+Once you have the LMspring folder where you want it to be,
+just drag`n`drop the "install.mel" file into Maya (drop in any viewport).
+
+This will add the LMspring tool to the current shelf.
+
+If you have a LMspring previous version installed, right click in the LMspring icons in the shelf and
+delete them before you drag and drop the new "install.mel" file into the Maya viewport.
+
+
+
+twitter: @luismiherrera
