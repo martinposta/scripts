@@ -1,0 +1,17 @@
+setObjectPickMask "All" 0;
+updateObjectSelectionMasks;
+updateComponentSelectionMasks;
+dR_selTypeChanged("");
+setObjectPickMask "Curve" true;
+updateObjectSelectionMasks;
+updateComponentSelectionMasks;
+dR_selTypeChanged("");
+setObjectPickMask "Surface" true;
+updateObjectSelectionMasks;
+updateComponentSelectionMasks;
+dR_selTypeChanged("");
+createMaskPopup "objOther";
+selectType -locator true;
+updateObjectSelectionMasks;
+updateComponentSelectionMasks;
+dR_selTypeChanged("");
