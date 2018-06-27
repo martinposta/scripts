@@ -1,0 +1,56 @@
+/*
+    Script:     secondaryMotion.mel
+    Version:    0.1
+    Author:     Martin Pošta
+    Website:    http://www.martinposta.com
+	Based on: 	Lee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.
+
+    Descr:      It makes stuff move.
+	Usage:		Selct a controler. Choose if you want secondary motion with "translation and rotation", or just "translation", or just "rotation".
+				After initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.
+
+*/
+
+string $selekce[] = `ls -sl`;
+//vytvoří poly, constrain k ovladaci a přidá jiggle
+polyPlane -w 40 -h 40 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;
+select -r $selekce;
+select -tgl pPlane1 ;
+doCreateParentConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+parentConstraint -weight 1;
+select -r pPlane1 ;
+doJiggle 1 { "0.5", "0.5", "1", "0", "0", "default", "" };
+setAttr "jiggle1.jiggleWeight" .8;
+setAttr "jiggle1.damping" 0;
+setAttr "jiggle1.stiffness" 0.1;
+setAttr "jiggle1.forceOnTangent" 0.5;
+setAttr "jiggle1.forceAlongNormal" 0.5;
+//simulace se zapeče a přidá nhair + smaže přebytečné nody
+bakeResults -simulation true -t "1:120" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {"pPlane1"};
+select -r pPlane1_parentConstraint1 ;
+delete;
+select -r pPlane1 ;
+createHair 1 1 10 0 0 0 0 3 0 1 1 1;
+select -r hairSystem1 ;
+delete;
+select -r curve1 ;
+delete;
+select -r pfxHair1 ;
+delete;
+select -r nucleus1 ;
+delete;
+select -r nRigid1 ;
+delete;
+//constrain ovladače k nhairu
+select -r pPlane1Follicle5050 ;
+select -add $selekce;
+//pozice i rotace
+//doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+//parentConstraint -weight 1;
+
+//pouze pozice
+doCreateParentConstraintArgList 1 { "1","0","0","0","1","1","1","1","","1" };
+parentConstraint -mo -skipRotate x -skipRotate y -skipRotate z -weight 1;
+
+select -r pPlane1 ;
+select -addFirst jiggle1 ;
