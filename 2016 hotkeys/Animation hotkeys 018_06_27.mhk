@@ -1,0 +1,318 @@
+//Maya Preference 2016 (Release 1)
+//
+//
+
+//
+// The runtime commands referenced by the hotkeys
+//
+runTimeCommand
+	-annotation ""
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("//Switch Perspective Cameras\n$currentCamera = `lookThru -q`;\nstring $allCameras[];\n$allCameras = `listCameras -p`;// This will select perspective cameras only\nint $nextCamera;\nfor($pos=0;$pos<size($allCameras);$pos++)\n{\nif($currentCamera == $allCameras[$pos]) $nextCamera = $pos+1;\n}\nif($nextCamera>=size($allCameras)) $nextCamera = 0;\nlookThru $allCameras[$nextCamera];")
+	cycleCam;
+
+runTimeCommand
+	-annotation "mp_animation (Release)"
+	-category "Other items.User Marking Menus"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("if (`popupMenu -exists tempMM`) { deleteUI tempMM; }")
+	mp_animation_Release;
+
+runTimeCommand
+	-annotation "reset"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("python(\"import ml_resetChannels;ml_resetChannels.main()\");")
+	reset;
+
+runTimeCommand
+	-annotation "shuttleplay"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nshuttleplay;")
+	shuttleplay;
+
+runTimeCommand
+	-annotation "nudgeplus"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nnudgeplus;")
+	nudgeplus;
+
+runTimeCommand
+	-annotation "shuttlestop"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nshuttlestop;")
+	shuttlestop;
+
+runTimeCommand
+	-annotation ""
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "python"
+	-command ("from ebLabs_displayToggle import *\nebLabs_displayToggle(nurbsCurves=True)")
+	CurvesONOFF;
+
+runTimeCommand
+	-annotation "nudgeminus"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nnudgeminus;")
+	nudgeminus;
+
+runTimeCommand
+	-annotation "removeblankframe"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nremoveblankframe()\n")
+	removeblankframe;
+
+runTimeCommand
+	-annotation "breakdownNext"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nbreakdownNext;")
+	breakdownNext;
+
+runTimeCommand
+	-annotation "insertblankframe"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\ninsertblankframe()")
+	insertblankframe;
+
+runTimeCommand
+	-annotation "mp_animation (Press)"
+	-category "Other items.User Marking Menus"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("if (`popupMenu -exists tempMM`) { deleteUI tempMM; }\npopupMenu -button 1 -ctl true -alt true -sh false -allowOptionBoxes true -parent `findPanelPopupParent` -mm 1 tempMM; \nsource \"menu_mp_animation\";\n")
+	mp_animation_Press;
+
+runTimeCommand
+	-annotation "breakdownPrev"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"KL_animUtils.mel\";\nbreakdownPrev;\n")
+	breakdownPrev;
+
+runTimeCommand
+	-annotation "deleteK"
+	-category "Custom Scripts"
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("timeSliderClearKey;")
+	deleteK;
+
+//
+// The name commands referenced by the hotkeys
+//
+nameCommand
+	-annotation "breakdownNextNameCommand"
+	-sourceType "mel"
+	-command ("breakdownNext")
+	breakdownNextNameCommand;
+
+nameCommand
+	-annotation "breakdownPrevNameCommand"
+	-sourceType "mel"
+	-command ("breakdownPrev")
+	breakdownPrevNameCommand;
+
+nameCommand
+	-annotation "nudgeplusNameCommand"
+	-sourceType "mel"
+	-command ("nudgeplus")
+	nudgeplusNameCommand;
+
+nameCommand
+	-annotation "nudgeminusNameCommand"
+	-sourceType "mel"
+	-command ("nudgeminus")
+	nudgeminusNameCommand;
+
+nameCommand
+	-annotation "shuttleplayNameCommand"
+	-sourceType "mel"
+	-command ("shuttleplay")
+	shuttleplayNameCommand;
+
+nameCommand
+	-annotation "shuttlestopNameCommand"
+	-sourceType "mel"
+	-command ("shuttlestop")
+	shuttlestopNameCommand;
+
+nameCommand
+	-annotation "NextKeyNameCommand"
+	-sourceType "mel"
+	-command ("NextKey")
+	NextKeyNameCommand;
+
+nameCommand
+	-annotation "NextFrameNameCommand"
+	-sourceType "mel"
+	-command ("NextFrame")
+	NextFrameNameCommand;
+
+nameCommand
+	-annotation "PreviousKeyNameCommand"
+	-sourceType "mel"
+	-command ("PreviousKey")
+	PreviousKeyNameCommand;
+
+nameCommand
+	-annotation "PreviousFrameNameCommand"
+	-sourceType "mel"
+	-command ("PreviousFrame")
+	PreviousFrameNameCommand;
+
+nameCommand
+	-annotation "insertblankframeNameCommand"
+	-sourceType "mel"
+	-command ("insertblankframe")
+	insertblankframeNameCommand;
+
+nameCommand
+	-annotation "removeblankframeNameCommand"
+	-sourceType "mel"
+	-command ("removeblankframe")
+	removeblankframeNameCommand;
+
+nameCommand
+	-annotation "OutlinerWindowNameCommand"
+	-sourceType "mel"
+	-command ("OutlinerWindow")
+	OutlinerWindowNameCommand;
+
+nameCommand
+	-annotation "GraphEditorNameCommand"
+	-sourceType "mel"
+	-command ("GraphEditor")
+	GraphEditorNameCommand;
+
+nameCommand
+	-annotation "deleteKNameCommand"
+	-sourceType "mel"
+	-command ("deleteK")
+	deleteKNameCommand;
+
+nameCommand
+	-annotation "resetNameCommand"
+	-sourceType "mel"
+	-command ("reset")
+	resetNameCommand;
+
+nameCommand
+	-annotation "RepeatLastNameCommand"
+	-sourceType "mel"
+	-command ("RepeatLast")
+	RepeatLastNameCommand;
+
+nameCommand
+	-annotation "cycleCamNameCommand"
+	-sourceType "mel"
+	-command ("cycleCam")
+	cycleCamNameCommand;
+
+nameCommand
+	-annotation "CurvesONOFFNameCommand"
+	-sourceType "mel"
+	-command ("CurvesONOFF")
+	CurvesONOFFNameCommand;
+
+nameCommand
+	-annotation "DuplicateNameCommand"
+	-sourceType "mel"
+	-command ("Duplicate")
+	DuplicateNameCommand;
+
+nameCommand
+	-annotation "InsertKeysToolNameCommand"
+	-sourceType "mel"
+	-command ("InsertKeysTool")
+	InsertKeysToolNameCommand;
+
+nameCommand
+	-annotation "mp_animation_PressNameCommand"
+	-sourceType "mel"
+	-command ("mp_animation_Press")
+	mp_animation_PressNameCommand;
+
+nameCommand
+	-annotation "mp_animation_ReleaseNameCommand"
+	-sourceType "mel"
+	-command ("mp_animation_Release")
+	mp_animation_ReleaseNameCommand;
+
+//
+// The user hotkeys
+//
+//
+// The hotkey set
+//
+hotkeySet -source "Maya_Default" -current Animation_hotkeys_018_06_27;
+//
+// The hotkey contexts and hotkeys
+//
+hotkey -keyShortcut "n" -name ("breakdownPrevNameCommand");
+hotkey -keyShortcut "b" -releaseName ("artisanModifyUpperRadius_release");
+hotkey -keyShortcut "," -alt -name ("insertblankframeNameCommand");
+hotkey -keyShortcut "b" -name ("artisanModifyUpperRadius_press");
+hotkey -keyShortcut "g" -sht -name ("RepeatLastNameCommand");
+hotkey -keyShortcut ">" -ctl -alt -name ("");
+hotkey -keyShortcut "o" -releaseName ("");
+hotkey -keyShortcut "." -name ("nudgeplusNameCommand");
+hotkey -keyShortcut "d" -ctl -name ("deleteKNameCommand");
+hotkey -keyShortcut "o" -name ("OutlinerWindowNameCommand");
+hotkey -keyShortcut "z" -alt -name ("PreviousFrameNameCommand");
+hotkey -keyShortcut "g" -name ("GraphEditorNameCommand");
+hotkey -keyShortcut "c" -releaseName ("");
+hotkey -keyShortcut "c" -name ("cycleCamNameCommand");
+hotkey -keyShortcut "x" -releaseName ("");
+hotkey -keyShortcut "d" -sht -name ("DuplicateNameCommand");
+hotkey -keyShortcut "x" -name ("NextKeyNameCommand");
+hotkey -keyShortcut "t" -name ("resetNameCommand");
+hotkey -keyShortcut "." -alt -name ("removeblankframeNameCommand");
+hotkey -keyShortcut "<" -ctl -alt -name ("");
+hotkey -keyShortcut "c" -alt -name ("CurvesONOFFNameCommand");
+hotkey -keyShortcut "m" -releaseName ("");
+hotkey -keyShortcut "," -name ("nudgeminusNameCommand");
+hotkey -keyShortcut "m" -name ("breakdownNextNameCommand");
+hotkey -keyShortcut "x" -alt -name ("NextFrameNameCommand");
+hotkey -keyShortcut "a" -releaseName ("shuttlestopNameCommand");
+hotkey -keyShortcut "a" -name ("shuttleplayNameCommand");
+hotkey -keyShortcut "a" -ctl -alt -releaseName ("mp_animation_ReleaseNameCommand");
+hotkey -keyShortcut "a" -ctl -alt -name ("mp_animation_PressNameCommand");
+hotkey -keyShortcut "z" -name ("PreviousKeyNameCommand");
+hotkey -keyShortcut "n" -releaseName ("");
+hotkeyCtx -type "Editor" -addClient "hyperShadePanel";
+hotkeyCtx -type "Editor" -addClient "polyTexturePlacementPanel";
+hotkeyCtx -type "Editor" -addClient "nodeEditorPanel";
+hotkeyCtx -type "Editor" -addClient "outlinerPanel";
+hotkeyCtx -type "Editor" -addClient "shapePanel";
+hotkeyCtx -type "Editor" -addClient "cteEditor";
+hotkeyCtx -type "Editor" -addClient "posePanel";
+hotkeyCtx -type "Editor" -addClient "profilerPanel";
+hotkeyCtx -type "Editor" -addClient "hyperGraphPanel";
+hotkeyCtx -type "Editor" -addClient "graphEditor";
+hotkey -keyShortcut "y" -name ("InsertKeysToolNameCommand");
+hotkey -keyShortcut "z" -name ("") -ctxClient "graphEditor";
+hotkeyCtx -type "Tool" -addClient "texCutContext";
+hotkeyCtx -type "Tool" -addClient "sculptMeshCache";
+hotkeyCtx -type "Tool" -addClient "SymmetrizeUVBrush";
+hotkeyCtx -type "Tool" -addClient "texSculptCacheContext";
+hotkeyCtx -type "Tool" -addClient "Unfold3DBrush";
