@@ -157,7 +157,7 @@ global proc shelf_m_Anim () {
     ;
     separator
         -enable 1
-        -width 34
+        -width 12
         -height 35
         -manage 1
         -visible 1
@@ -228,7 +228,7 @@ global proc shelf_m_Anim () {
     ;
     separator
         -enable 1
-        -width 34
+        -width 12
         -height 35
         -manage 1
         -visible 1
@@ -362,6 +362,17 @@ global proc shelf_m_Anim () {
         -commandRepeatable 1
         -flat 1
     ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -style "shelf" 
+        -horizontal 0
+    ;
     shelfButton
         -enableCommandRepeat 1
         -enable 1
@@ -421,17 +432,6 @@ global proc shelf_m_Anim () {
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
-    ;
-    separator
-        -enable 1
-        -width 34
-        -height 35
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -enableBackground 0
-        -style "shelf" 
-        -horizontal 0
     ;
     shelfButton
         -enableCommandRepeat 1
@@ -558,7 +558,7 @@ global proc shelf_m_Anim () {
     ;
     separator
         -enable 1
-        -width 34
+        -width 12
         -height 35
         -manage 1
         -visible 1
