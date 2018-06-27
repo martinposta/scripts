@@ -1,0 +1,93 @@
+/*  This file downloaded from Highend3d.com
+''  
+''  Highend3d.com File Information:
+''  
+''    Script Name: RandomSelect v0.1
+''    Author: Jordi Fernandez Mora
+''    Last Updated: September 4, 2003
+''    Update/Change this file at:
+''    http://www.highend3d.com/maya/mel/?section=utilities#2525
+''  
+''  Please do not alter any information above this line
+''  it is generated dynamically by Highend3d.com and will
+''  be changed automatically on any updates.
+*/
+
+//Random Select
+//Jordi Fernandez Mora
+//e-mail: jordi.fernandezmo@campus.uab.es
+// 
+//	01-08-2003: Repetition selection control 100 % runing
+//	30-07-2003: Without repetition control
+//
+
+window -w 25 -h 15-title "General Random Select 2003" finestra;
+
+columnLayout;
+
+intSliderGrp
+-label "% Selection: "
+-field true
+-minValue 1
+-maxValue 100
+-value 7
+tpcent;
+
+button -w 150 -label "OK" -c "seleccio"; 
+
+showWindow finestra;
+
+global proc seleccio()
+
+{
+
+$seleccio = `ls -sl -fl`;
+$SizeSeleccio= size($seleccio);
+int $tpcentfinal = `intSliderGrp -q -value tpcent`;
+$NombreSeleccions= (($tpcentfinal*$SizeSeleccio)/100);
+select -cl;
+
+int $randomList[] = `returnRandomFloatList 0 $SizeSeleccio $NombreSeleccions`;
+
+while($NombreSeleccions>=0)
+{
+print ("\nSelecting items...");
+select -add $seleccio[$randomList[$NombreSeleccions]];
+$NombreSeleccions--;
+
+}
+
+print $randomList;
+}
+
+global proc int[] returnRandomFloatList(int $min, int $max, int $listSize) 
+{ 
+int $randomList[]; 
+clear $randomList; 
+for ($a=0; $a<$listSize; $a++) 
+{ 
+int $val = `rand $min $max`; 
+if (!`intArrayCount $val $randomList`) 
+$randomList[$a] = $val; 
+else 
+{ 
+print "Duplicate value found, replacing.\n"; 
+$a--; 
+} 
+} 
+return $randomList; 
+} 
+global proc int intArrayCount(int $item, int $list[]) 
+{ 
+int $result = 0; 
+int $listItem; 
+for ($listItem in $list) { 
+if ($item == $listItem) $result++; 
+} 
+return $result; 
+}
+
+
+
+
+
