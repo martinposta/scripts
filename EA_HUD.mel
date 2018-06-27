@@ -1,0 +1,1130 @@
+global proc EA_HUD()
+{
+if (`window -exists EA_HUD `){deleteUI EA_HUD ;	}
+string $window = `window -t "EA_HUD_1.2" -w 450 -h 240 -tlc 150 47 -s 1 -rtf 1 -tlb 1 -mnb 1  -mxb 1  EA_HUD `; 
+string $form = `formLayout -w 420 -h 265      -numberOfDivisions 100`;  
+                    
+string $b3   = `button -l "Hide HUD"          -c "HideHUD()"`;                           
+string $b2   = `button -l "Close"             -c ("deleteUI -window " + $window)`;            
+string $b1   = `button -l "Show/Update HUD"   -c "HUD_Display()"`;                           
+string $tabs = `tabLayout -w 450 -h 150    -imh 4 -imw 4 -tc 0 `;                     
+formLayout -edit -af $tabs "top"  5    -af $tabs "right"  5     -af $tabs "left"   5   -ac $tabs "bottom" 5 $b3      
+                 -af $b1   "left" 5    -ac $b1   "bottom" 5 $b2 -ap $b1   "right"  5 50
+                 -an $b2   "top"       -af $b2   "left"   5     -af $b2   "bottom" 5   -af $b2 "right" 5
+                 -ap $b3   "left" 0 50 -ac $b3   "bottom" 5 $b2 -af $b3   "right"  5 $form;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_1_GUI////////////////////////////////////////////////////////////////////////////////////               
+string $child1 = `rowColumnLayout -numberOfColumns 2  `;                
+	string $PaneL = `getPanel -withFocus`; 
+	if ($PaneL == "scriptEditorPanel1"){  $PaneL = "modelPanel4"; }				
+	string $camName = `modelPanel -q -camera $PaneL`;
+	select $camName;
+	select -cl  ;
+	float $panelCamOver = `camera -q -overscan $camName`;                                
+
+checkBox     -l "Name      " -v 1  -w 65 -h 20 -cc " textField -e -en (`checkBox -q -v artistSwitch`)artist"           artistSwitch;
+textField    -tx `getenv "USERNAME"`           -w 340   -ebg 0 -enable 1                                               artist;  
+                                        
+checkBox     -l "Scene     "  -v 1 -w 65 -h 20 -cc " textField -e -en (`checkBox -q -v sceneSwitch`)sceneId"   		   sceneSwitch ;                                                
+textField    -tx `file -q -namespace`          -w 340   -ebg 0 -enable 1                                               sceneId ;
+        	        	
+checkBox     -l "Date       " -v 1 -w 65 -h 20 -cc " textField -e -en (`checkBox -q -v dateSwitch`)date"               dateSwitch;
+textField    -tx `date -f "DD.MM.YY _ hh:mm "` -w 340   -ebg 0 -enable 1                                               date ; 
+
+checkBox     -l "Camera  "    -v 1 -w 65 -h 20 -cc " textField -e -en (`checkBox -q -v cameraSwitch`)camName"        cameraSwitch;  
+textField    -tx $camName                      -w 340   -ebg 0                                                         camName;
+
+checkBox     -l "Note      "  -v 1 -w 65 -h 20   -cc " textField -e -en (`checkBox -q -v noteSwitch`) notes " 		  noteSwitch;
+textField                                      -w 340   -ebg 0                                                         notes ;
+
+checkBox     -l "Status    "  -v 1 -w 65 -h 20 -cc "radioButtonGrp -e -en (`checkBox -q -v statusSwitch`) status "   statusSwitch;
+radioButtonGrp    -nrb 4  -cw4  80 80 80 100 -la4 "Blocking" "WIP" "Refining" "Final Shot"  		                 status ;
+
+checkBox     -l "Project    " -v 1 -w 65 -h 20 -cc " textField -e -en (`checkBox -q -v projectSwitch`)project"	 	 projectSwitch ;
+textField    -tx `workspace -q -dir`          -w 50 -ebg 0 -enable 1   -font "fixedWidthFont"                        project ;
+
+
+
+checkBox     -l "Frame     "  -v 1 -w 65 -h 20                                                                        frameSwitch;  
+    rowLayout    -nc 3  -columnWidth3 20 90 150  -adj 1  -cal  1 "right" -cat 1 "both" 0 -cat 2 "both" 0 -cat 3 "both" 0  ;
+        float $minPlay = `playbackOptions -q -minTime`;
+	    float $maxPlay = `playbackOptions -q -maxTime`;	 
+		floatField -v $minPlay -pre 0 ilk;
+    	floatField -v $maxPlay -pre 0 iki;
+    	button -label "Get First and Last Frames" -command "FrameRange";                                
+    setParent ..;                                 
+setParent ..; 
+
+/////////////////////////////////child_1_GUI//////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_2_GUI//////////////////////////////////////////////////////////////////////////////////// 
+string $child2 = `rowColumnLayout -numberOfColumns 2  `;                           
+columnLayout -adjustableColumn true;   
+    gridLayout  -numberOfColumns 2 -cellWidthHeight 202 20   ;
+        checkBox -label "Film Gate"        -v 0 -align "center" -ofc "Film_Off"   -onc "Film_On";
+        checkBox -label "Resolution Gate"  -v 0 -align "center" -ofc "Reso_Off"  -onc "Reso_On";
+        checkBox -label "Gate Mask"        -v 0 -align "center" -ofc "Gate_Off"   -onc "Gate_On";
+        checkBox -label "Field Chart"      -v 0 -align "center" -ofc "Field_Off"  -onc "Field_On";
+        checkBox -label "Safe Action"      -v 0 -align "center" -ofc "Action_Off" -onc "Action_On";
+        checkBox -label "Safe Title"       -v 0 -align "center" -ofc "Title_Off"  -onc "Title_On";
+        checkBox -label "Film Pivot"       -v 0 -align "center" -ofc "Pivot_Off"  -onc "Pivot_On";
+        checkBox -label "Film Origin"      -v 0 -align "center" -ofc "Origin_Off" -onc "Origin_On";
+    setParent ..;  
+    separator; 
+	rowLayout -numberOfColumns 6  ;                 
+		radioCollection  ;
+		radioButton -label "360p"    -onc "rg1()"; 
+		radioButton -label "HD 540"    -onc "rg2()";                                                                                                 
+		radioButton -label "Full 1024" -onc "rg3()"; 
+		radioButton -label "Full 1280" -onc "rg4()";				                      
+		radioButton -label "HD 720"    -onc "rg5()";
+		radioButton -label "HD 1080"   -onc "rg6()"; 	 
+	setParent ..; 
+    separator;       	        	             	        	        	        	        	        	        	        
+    rowLayout  -ad1 1 -ad2 2 -numberOfColumns 2  ;                                             		
+        button   -l "Refresh" -w 50  -command "set_Overscan" myApplyBtn;           
+        floatSliderGrp -cw 1 50 -w 200 -h 20  -l "Overscan"  -v $panelCamOver -min 0.0 -max 5.0 -f 1 -pre 2 -dc "set_Overscan" Over_Scan;                                          
+    setParent ..;                  
+                                                                                                                                                                                                                                                                 
+    columnLayout -adj 1  -columnWidth 250;
+        colorIndexSliderGrp -l "First HUD Value Color: " -min 2  -max 30 -v (`displayColor -q -dormant headsUpDisplayLabels` +1  )  
+        -cc "displayColor -dormant headsUpDisplayLabels (`colorIndexSliderGrp -q -v Fvaluecolor` - 1)" Fvaluecolor;
+        colorIndexSliderGrp -l "Second HUD Value Color: " -min 2  -max 30 -v (`displayColor -q -dormant headsUpDisplayValues` +1  )  
+        -cc "displayColor -dormant headsUpDisplayValues (`colorIndexSliderGrp -q -v Svaluecolor` - 1)" Svaluecolor;                                          
+    setParent ..;	
+setParent ..;  
+setParent ..;						
+/////////////////////////////////child_2_GUI//////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/////////////////////////////////child_3_GUI//////////////////////////////////////////////////////////////////////////////////// 
+string $child3 = `rowColumnLayout -numberOfColumns 1  -w 400  `;
+    frameLayout -w 400 -cl 0 -collapsable 0 -lv 0 -label "" ;      
+        columnLayout -adj 1  -cat "both" 1 -rowSpacing 1 -columnWidth 320   ; 
+            text  -label "Give a name to your playblast and choose resolution of playblast." ;            
+        setParent ..; 
+        separator;                                     
+        columnLayout -adj 1  -cat "both" 1 -rowSpacing 1 -columnWidth 320   ; 
+            textFieldGrp   -label "Name Your Playblast File:  " suffixText;            
+        setParent ..; 
+    frameLayout -w 400 -cl 1 -cll 0   -l "Select Imagine Size and Take a Playblast" -ann "Click on size and automatically take a playblast";
+        rowLayout -numberOfColumns 6    ;                             
+            button -label "640*480"   -w 65 -h 20 -c "ra1()"   w1; 
+            button -label "HD 540"    -w 65 -h 20 -c "ra2()"   w2;                                                         
+            button -label "Full 1280" -w 65 -h 20 -c "ra3()"   w3;                                        
+            button -label "Full 1024" -w 65 -h 20 -c "ra4()"   w4;                       
+            button -label "HD 720"    -w 65 -h 20 -c "ra5()"   w5;
+            button -label "HD 1080"   -w 62 -h 20 -c "ra6()"   w6; 
+        setParent ..; 
+    setParent ..; 
+             separator;  
+    columnLayout -adj 1  -cat "both" 1 -rowSpacing 1 -columnWidth 320   ;            
+        button -label "Opens Movies File" -c "openMovies"  ;
+        button -label "Playblast Option" -c "option"      ; 
+    setParent ..;         
+                                            
+setParent ..; setParent ..;  
+/////////////////////////////////child_3_GUI//////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_4_GUI////////////////////////////////////////////////////////////////////////////////////               
+string $child4 = `rowColumnLayout -numberOfColumns 1  -w 400  `;
+    rowColumnLayout  -numberOfColumns 2 -w 403    ; 
+        columnLayout -h 40; 
+            text -l "Select Camera:" ;   
+            textScrollList -h 57 -allowMultiSelection true  -sc getCam  -fn tinyBoldLabelFont  selectCam ; getCamName;
+        setParent ..;
+        columnLayout -adj 1  -w 140  ; 
+            button -l "Refresh"        -c getCamName;
+            button -l "Tears Off Cam"  -c tearsCam;
+            button -l "Look Thru"      -c "lookThroughSelected 0 modelPanel4";           
+        setParent ..; 
+    setParent ..; 
+        rowColumnLayout  -numberOfColumns 2  ;  
+            button -l "Create Camera"  -w 200  -c "createCam" ;
+            button -l "Create View Camera" -w 200 -c "createViewCam(0)"  ; 		
+            button -l "Create Camera,Aim" -w 200   -c "createAim " ; 
+            button -l "Create Camera and Aim and Up"  -w 200  -c "createUp " ; ;            
+        setParent ..; 
+	rowColumnLayout   -numberOfColumns 2 ;  	
+        button -l "Lock Cam" -c lockCam -w 200   ;
+        button -l "UnLock Cam" -c unlockCam -w 200    ;	
+		button -l "Camera Switch" -w 60 -c "camSwitch" ;
+		button -l "Camera to Shelf" -c "camShelf()";
+	setParent ..;
+setParent ..;  setParent ..;  
+/////////////////////////////////child_4_GUI////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+tabLayout -edit
+         -tabLabel $child1 "HUD"
+         -tabLabel $child2 "Shot Option"
+         -tabLabel $child3 "Playblast"
+         -tabLabel $child4 "Camera"                            
+         $tabs;                                                            
+
+showWindow EA_HUD;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_1_func/////////////////////////////////////////////////////////////////////////////////// 
+
+global proc string name()
+{
+    string $artist = `textField -q -text artist `;
+    return $artist;
+}
+
+global proc string filename()
+{
+    string $file = `file -q -ns`;
+    return $file;
+}
+
+global proc string notes()
+{
+    string $notes = `textField -q -text notes `;
+    return $notes;
+}
+
+global proc string durum()
+{
+    int $selected = `radioButtonGrp -q -select status`;
+        string $output;
+        if      ( $selected == 1 ) {$output=  "Blocking";}
+        else if ( $selected == 2 ) {$output=  "WIP";}
+        else if ( $selected == 3 ) {$output=  "Refine";}
+        else if ( $selected == 4 ) {$output=  "Final";}
+
+        return $output;
+}
+
+global proc FrameRange()
+{   	    
+float $ilk = `playbackOptions -q -minTime`;
+float $iki = `playbackOptions -q -maxTime`;	    	    
+float $curMin = `playbackOptions -q -minTime`;
+float $curMax = `playbackOptions -q -maxTime`;
+floatField -e -v $curMin ilk;
+floatField -e -v $curMax iki;
+}
+
+global proc string frameCounter(){
+	float $curTime = `currentTime -q`;
+	int $curTimeInt = $curTime;
+	string $cTimeString = $curTimeInt;
+	int $cTimePadd = size($cTimeString) + 3;
+	string $cTime = $curTime;
+	$cTime = `substring $cTime 1 $cTimePadd`;
+	
+	int $startTime = `playbackOptions -q -minTime`;
+	int $endTime = `playbackOptions -q -maxTime`;
+	string $frameCounter = ($startTime + " / " + $cTime + " / " + $endTime);
+return $frameCounter;
+}
+
+global proc string secondsPadding(int $num)
+{
+ 	string $tmp;
+ 	int $pad;
+ 	$tmp = $num;
+ 	$pad = size($tmp); 
+ 	if($pad == 1){return ("0" + $tmp);}
+ 	else{return $tmp; }
+}
+
+global proc string framesPadding(int $num)
+{
+ 	string $tmp;
+ 	int $pad; 
+	$tmp = $num;
+ 	$pad = size($tmp);
+ 	if($pad == 1)
+ 	{
+  	return ("0" + $tmp);
+ 	}
+ 	else
+ 	{
+  return $tmp;
+ }
+}
+
+global proc string timecodeConvert()
+{
+ $ct = `currentTime -q`;
+ $fps = `currentTimeUnitToFPS`;
+ $s = ($ct % (60 * $fps)) / $fps;
+ $f = ($ct % $fps);
+if ($f == 0) {		
+		$f = 25;
+		$s = $s - 1;
+		}
+ $ss = secondsPadding($s);
+ $ff = framesPadding($f);
+ return ($ss + ":" + $ff);
+}
+
+global proc frameCounterUpdate()
+{
+	if(`headsUpDisplay -q -ex "frameCounterHUD"` != 0)
+	{
+	expression -s "headsUpDisplay -r \"frameCounterHUD\";" 		-n "frameCounterUpdate" -ae 1 -uc "all";
+	} 
+	else {delete "frameCounterUpdate";}
+}
+
+global proc timeCodeUpdate()
+{
+	if(`headsUpDisplay -q -ex "timeCodeHUD"` != 0)
+	{
+	expression -s "headsUpDisplay -r \"timeCodeHUD\";" 	-n "timeCodeUpdate" -ae 1 -uc "all";
+	} 
+	else {delete "timeCodeUpdate";}
+}
+
+global proc HUD_Display(){
+	string $buf[] = `headsUpDisplay -lh`;
+	for ($headsUpDisplay in $buf) headsUpDisplay -rem  $headsUpDisplay;	
+	Lala;
+	print"HUD is Shown";
+}
+
+global proc Lala(){
+        
+displayColor -dormant headsUpDisplayLabels 12;
+displayColor -dormant headsUpDisplayValues 17;
+
+if (` checkBox -q -value projectSwitch `==1)
+{
+	headsUpDisplay
+		-section 0
+		-block 0
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "Project"
+		-command "workspace -q -rd"
+		-attachToRefresh
+	ProjectHUD;
+}
+if (` checkBox -q -value sceneSwitch `==1){
+	headsUpDisplay
+			-section 0
+			-block 1
+			-blockSize "small" 
+			-labelFontSize "large"
+			-dataFontSize "large"
+			-label "Scene  "
+			-command filename
+			-atr			
+	fileHUD;
+}
+if (` checkBox -q -value dateSwitch `==1){
+	headsUpDisplay
+		-section 0
+		-block 2
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "Date     "
+		-command "date -format \"MM.DD.YY _ hh:mm \""
+		-event "cameraChange"
+	dateHUD;
+}	
+if (` checkBox -q -value artistSwitch `==1){
+	headsUpDisplay
+		-section 4
+		-block 1
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "Name"
+		-command name 
+		-event "cameraChange"
+	animatorHUD;
+	}
+if (` checkBox -q -value statusSwitch `==1){
+	headsUpDisplay
+		-section 5
+		-block 1
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "Status"
+		-command durum
+		-event "cameraChange"
+	statusHUD;
+	}
+if (` checkBox -q -value noteSwitch `==1){
+	headsUpDisplay
+		-section 5
+		-block 2
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "Notes"
+		-command notes
+		-event "cameraChange"
+	notesHUD;
+}
+if (` checkBox -q -value cameraSwitch `==1){
+	headsUpDisplay
+		-section 9
+		-block 1
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label ""
+		-preset "cameraNames"
+	cameraHUD;
+}
+if (` checkBox -q -value frameSwitch `==1){	
+	headsUpDisplay
+		-section 9
+		-block 2
+		-blockSize "small"
+		-labelFontSize "large"
+		-dataFontSize "large"
+		-label "frame"
+		-command  "frameCounter"
+		-event "timeChanged"
+	frameCounterHUD;
+}
+
+if (`objExists frameCounterUpdate` != 1) frameCounterUpdate;
+
+if (`objExists noUpdate` != 1) {
+	scriptNode -st 1 -bs "source DisplayHUD.mel;expressionRemover;delete noUpdate;" -n noUpdate;
+	}
+}
+
+global proc expressionRemover() {
+	if (`headsUpDisplay -q -ex "frameCounterHUD"` != 1) {
+		string $allExpr[] = `ls -type "expression" "*Update*"`;
+		string $curExpr;
+		for ($curExpr in $allExpr) delete $curExpr;
+	}
+}
+
+global proc HideHUD() {
+	if (`headsUpDisplay -q -ex "frameCounterHUD"` != 0) {
+		string $buf[] = `headsUpDisplay -lh`;
+		for ($headsUpDisplay in $buf) headsUpDisplay -rem  $headsUpDisplay;	
+
+		if (`objExists frameCounterUpdate`) delete frameCounterUpdate;
+		if (`objExists timeCodeUpdate`) delete timeCodeUpdate;
+		if (`objExists noUpdate`) delete noUpdate;
+
+		displayColor -rs;
+		colorIndex -rs;
+		displayRGBColor -rs;
+
+
+	
+	headsUpDisplay -s 4
+			   -b 0
+			   -vis (`optionVar -q objectDetailsVisibility`)
+			   -label  (uiRes("m_initAfter.kHUDTitleBackfaces"))
+			   -lw 135
+			   -dw 75
+			   -c "objectDetailsBackfaces()"
+			   -ev "SelectionChanged"
+			   -nc "attributeChange"
+			   HUDObjDetBackfaces;
+
+	headsUpDisplay -s 4
+			   -b 1
+			   -vis (`optionVar -q objectDetailsVisibility`)
+			   -label  (uiRes("m_initAfter.kHUDTitleSmoothness"))
+			   -lw 135
+			   -dw 75
+			   -c "objectDetailsSmoothness()"
+			   -ev "SelectionChanged"
+			   -nc "attributeChange"
+			   HUDObjDetSmoothness;
+
+	headsUpDisplay -s 4
+			   -b 2
+			   -vis (`optionVar -q objectDetailsVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleInstance"))
+			   -lw 135
+			   -dw 75
+			   -c "objectDetailsInstance()"
+			   -ev "SelectionChanged"
+			   -nc "instanceChange"
+			   HUDObjDetInstance;
+
+	headsUpDisplay -s 4
+			   -b 3
+			   -vis (`optionVar -q objectDetailsVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleDisplayLayer"))
+			   -lw 135
+			   -dw 75
+			   -c "objectDetailsDisplayLayer()"
+			   -ev "SelectionChanged"
+			   -nc "connectionChange"
+			   HUDObjDetDispLayer;
+
+	headsUpDisplay -s 4
+			   -b 4
+			   -vis (`optionVar -q objectDetailsVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleDistanceFromCamera"))
+			   -lw 135
+			   -dw 75
+			   -pre "distanceFromCamera"
+			   HUDObjDetDistFromCam;
+
+	headsUpDisplay -s 4
+				-b 5
+				-vis (`optionVar -q objectDetailsVisibility`)
+				-label (uiRes("m_initAfter.kHUDTitleSelectedObjects")) 
+				-lw 135
+				-dw 75
+				-c "objectDetailsNumberOfSelectedObjects()"
+				-ev "SelectionChanged"
+				HUDObjDetNumSelObjs;
+
+
+	headsUpDisplay -s 0
+			   -b 0
+			   -vis (`optionVar -q polyCountVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleVerts")) 
+			   -lw 50
+			   -dw 50
+			   -pre "polyVerts"
+			   HUDPolyCountVerts;
+
+	headsUpDisplay -s 0
+			   -b 1
+			   -vis (`optionVar -q polyCountVisibility`)
+			    -label (uiRes("m_initAfter.kHUDTitleEdges")) 
+			   -lw 50
+			   -dw 50
+			   -pre "polyEdges"
+			   HUDPolyCountEdges;
+
+	headsUpDisplay -s 0
+			   -b 2
+			   -vis (`optionVar -q polyCountVisibility`)
+			  -label (uiRes("m_initAfter.kHUDTitleFaces")) 
+			   -lw 50
+			   -dw 50
+			   -pre "polyFaces"
+			   HUDPolyCountFaces;
+
+	headsUpDisplay -s 0
+			   -b 3
+			   -vis (`optionVar -q polyCountVisibility`)
+			    -label (uiRes("m_initAfter.kHUDTitleTris")) 
+			   -lw 50
+			   -dw 50
+			   -pre "polyTriangles"
+			   HUDPolyCountTriangles;
+
+	headsUpDisplay -s 0
+			   -b 4
+			   -vis (`optionVar -q polyCountVisibility`)
+			    -label (uiRes("m_initAfter.kHUDTitleUVs"))
+			   -lw 50
+			   -dw 50
+			   -pre "polyUVs"
+			   HUDPolyCountUVs;
+
+
+	headsUpDisplay -s 0
+			   -b 5
+			   -vis (`optionVar -q subdDetailsVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleSubdivCurrentLevel")) 
+			   -lw 135
+			   -dw 30
+				-c "subdDetailsCurrentLevel()"
+			   -ev "SelectionChanged"
+			   -nc "attributeChange"
+			   HUDSubdLevel;
+
+	headsUpDisplay -s 0
+			   -b 6
+			   -vis (`optionVar -q subdDetailsVisibility`)
+			   -label (uiRes("m_initAfter.kHUDTitleSubdivMode"))
+			   -lw 135
+			   -dw 30
+				-c "subdDetailsCurrentMode()"
+			   -ev "SelectionChanged"
+			   HUDSubdMode;
+
+
+	headsUpDisplay -s 7
+			   -b 0
+			   -vis (`optionVar -q cameraNamesVisibility`)
+			   -ao true
+			   -ba center
+			   -pre "cameraNames"
+			   HUDCameraNames;
+
+
+	headsUpDisplay -s 2
+		   -b 1
+		   -vis (`optionVar -q cameraNamesVisibility`)
+		   -ba center		   
+		   -label (uiRes("m_initAfter.kHUDTitleCameraName")) 
+		   -pre "renderQuality"
+		   HUDHQCameraNames;
+	
+	string $titleIKBlend = (uiRes("m_initAfter.kHUDTitleIKBlend")) ;
+	string $titleCurrentCharacter = (uiRes("m_initAfter.kHUDTitleCurrentCharacter")) ;
+	string $titlePlaybackSpeed =  (uiRes("m_initAfter.kHUDTitlePlaybackSpeed")) ;
+	string $titleFbikKeyingMode = (uiRes("m_initAfter.kHUDFbikKeyingMode")) ;
+	string $titleFbikKeyType = (uiRes("m_initAfter.kHUDFbikKeyType")) ;	
+	string $titleCurrentFrame = (uiRes("m_initAfter.kHUDCurrentFrameLabel"));
+
+	int $section = 9;
+	int $lblWidth = 115;
+
+	if(`about -ev`) 
+	{
+		$section = 3;
+		$lblWidth = 135;
+	}
+
+
+	headsUpDisplay -s $section
+		   -b 0
+		   -vis (`optionVar -q frameRateVisibility`)
+		   -ba right
+		   -dfs large
+		   -da right
+		   -dp 1
+		   -pre "frameRate"
+		   HUDFrameRate;
+
+	headsUpDisplay 
+			-section			$section
+			-block				1
+			-blockSize			"small"
+			-label				$titleCurrentFrame
+			-labelWidth			$lblWidth
+			-dataWidth			75
+			-labelFontSize		"small"
+			-dataFontSize		"small"
+			-allowOverlap		true
+			-blockAlignment		"center"
+			-preset				"currentFrame"
+			-vis (`optionVar -q currentFrameVisibility`)
+		HUDCurrentFrame;
+
+
+	headsUpDisplay -s $section
+		   -b 2
+		  -label $titleIKBlend
+		   -dp 1
+		   -dfs "small"
+		   -lw $lblWidth
+		   -dw 75
+		   -c "animationDetailsIKFK()"
+		   -ev "SelectionChanged"
+		   -nc "attributeChange"
+		   HUDIKSolverState;
+
+	headsUpDisplay -s $section
+		   -b 3
+		   -label $titleCurrentCharacter
+		   -dp 1
+		   -dfs "small"
+		   -lw $lblWidth
+		   -dw 75
+		   -c "animationDetailsCurrentCharacter()"
+		   -ev "NewSceneOpened"
+		   HUDCurrentCharacter;
+
+	headsUpDisplay -s $section
+		   -b 4
+		   -label $titlePlaybackSpeed
+		   -dp 1
+		   -dfs "small"
+		   -lw $lblWidth
+		   -dw 75
+		   -c "animationDetailsPlaybackSpeed()"
+		   -ev "timeUnitChanged"
+		   HUDPlaybackSpeed;
+		   
+    headsUpDisplay -s $section
+		   -b 5
+		   -label $titleFbikKeyingMode
+		   -dp 1
+		   -dfs "small"
+		   -lw $lblWidth
+		   -dw 75
+		   -c "fbikDetailsKeyingMode()"
+		   -ev "SelectionChanged"
+		   HUDFbikKeyingMode;
+		   
+    headsUpDisplay -s $section
+		   -b 6
+		   -label $titleFbikKeyType
+		   -dp 1
+		   -dfs "small"
+		   -lw $lblWidth
+		   -dw 75
+		   -c "fbikDetailsKeyType()"
+		   -ev "SelectionChanged"
+		   HUDFbikKeyType;
+
+
+	headsUpDisplay -section $section
+			   -block 7
+			   -vis (`optionVar -q selectDetailsVisibility`)
+			   -lw $lblWidth
+			   -preset "softSelect"
+			   HUDSoftSelectState;
+
+	headsUpDisplay -section $section
+			   -block 8
+			   -vis (`optionVar -q selectDetailsVisibility`)
+			   -preset "reflection"
+			   -lw $lblWidth
+			   HUDReflectionState;
+
+	string $titleCurrentContainer = (uiRes("m_initAfter.kHUDCurrentContainerLabel"));
+	headsUpDisplay 
+			-section			$section
+			-block				9
+			-blockSize			"small"
+			-label				$titleCurrentContainer
+			-labelWidth			$lblWidth
+			-labelFontSize		"small"
+			-dataFontSize		"small"
+		    -command			"getCurrentContainer"
+			-event				"currentContainerChange"
+			-vis (`optionVar -q currentContainerVisibility`)
+		HUDCurrentContainer;
+
+
+	setAnimationDetailsVisibility(`optionVar -q animationDetailsVisibility`);
+	setFbikDetailsVisibility(`optionVar -q fbikDetailsVisibility`);
+
+	headsUpDisplay -section $section
+			   -block 10
+			   -vis (`optionVar -q focalLengthVisibility`)
+			   -preset "focalLength"
+			   -lw $lblWidth
+			   HUDFocalLength;
+
+
+
+	headsUpDisplay -s 5
+			   -b 0
+			   -vis (`optionVar -q viewAxisVisibility`)
+			   -pre "viewAxis"
+			   HUDViewAxis;
+	}
+
+else 
+print"HUD is Hide";
+}
+
+/////////////////////////////////child_1_func/////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_2_func/////////////////////////////////////////////////////////////////////////////////// 
+global proc Film_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            camera -e -displayFilmGate on $cam;print ("Film Gate is On");	
+}
+global proc Film_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayFilmGate $cam` == 1) 
+			{
+            	 camera -e -displayFilmGate off $cam;	
+				 print ("Film Gate is Off");
+			}				 
+}
+global proc Reso_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayResolution $cam` == 1) 
+			{
+            	 camera -e  -displayResolution off $cam;
+				 print ("Resolution Gate is Off");
+			}				 
+}
+global proc Reso_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            camera -e  -displayResolution on $cam;print ("Resolution Gate is On");	
+}
+global proc Gate_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayGateMask $cam` == 1) 
+			{
+            	 camera -e -displayGateMask off $cam;	
+				 print ("Gate Mask is Off");
+			}				 
+}
+global proc Gate_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            camera -e -displayGateMask on $cam;print ("Gate Mask is On");
+}
+global proc Field_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayFieldChart $cam` == 1) 
+            	 camera -e -displayFieldChart off $cam;		
+				 print ("Film Chart is Off");							 
+}
+global proc Field_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+			camera -e -displayFieldChart on $cam;print ("Film Chart is On");
+}
+global proc Action_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displaySafeAction $cam` == 1) 
+            	 camera -e -displaySafeAction off $cam;		
+				 print ("Safe Action is Off");							 
+}
+global proc Action_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+			camera -e -displaySafeAction on $cam;print ("Safe Action is On");
+}
+global proc Title_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displaySafeTitle $cam` == 1) 
+            	 camera -e -displaySafeTitle off $cam;		
+				 print ("Safe Title is Off");							 
+}
+global proc Title_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+             camera -e -displaySafeTitle on $cam;print ("Safe Title is On");
+}
+global proc Origin_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayFilmOrigin $cam` == 1) 
+			{
+            	 camera -e -displayFilmOrigin off $cam;	
+			     print ("Film Origin is Off");
+			}						 
+}
+global proc Origin_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            camera -e -displayFilmOrigin on $cam; print ("Film Origin is On");		
+}
+global proc Pivot_Off()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            if (`camera -q -displayFilmPivot $cam` == 1) 
+            	 camera -e -displayFilmPivot off $cam;	
+				 print ("Film Pivot is Off");							 	
+}
+global proc Pivot_On()
+{                       
+    string $PaneL = `getPanel -withFocus`;
+        if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+        string $cam = `modelPanel -q -cam $PaneL`;
+            camera -e -displayFilmPivot on $cam;print ("Film Pivot is On");
+}
+global proc set_Overscan()
+{    
+    string $PaneL = `getPanel -withFocus`;
+    if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+	
+    string $PaneL = `getPanel -withFocus`;
+    if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+     string $camName = `modelPanel -q -camera ($PaneL)`;
+     select $camName;
+     select -cl  ;
+     float $amount = `floatSliderGrp -q -value Over_Scan` ;
+     camera -e -overscan $amount $camName;
+     camera -e -displayResolution 1 $camName;
+}
+
+global proc rg1()
+{     
+	setAttr "defaultResolution.width" 480;
+	setAttr "defaultResolution.height" 360;
+}
+global proc rg2()
+{     
+	setAttr "defaultResolution.width" 960;
+	setAttr "defaultResolution.height" 540;
+}
+global proc rg3()
+{     
+	setAttr "defaultResolution.width" 1024;
+	setAttr "defaultResolution.height" 768;
+}		
+global proc rg4()
+{     
+	setAttr "defaultResolution.width" 1280;
+	setAttr "defaultResolution.height" 1024;
+}		
+global proc rg5()
+{     
+	setAttr "defaultResolution.width" 1280;
+	setAttr "defaultResolution.height" 720;
+}
+global proc rg6()
+{     
+	setAttr "defaultResolution.width" 1920;
+	setAttr "defaultResolution.height" 1080;
+}
+/////////////////////////////////child_2_func///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_3_func///////////////////////////////////////////////////////////////////////////////////
+global proc string suffix()
+{   
+    string $suffixtext = `textFieldGrp -q -tx suffixText`;
+	return $suffixtext;
+}
+
+global proc ra1(){setAttr "defaultResolution.width" 640; setAttr "defaultResolution.height" 480 ;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 640 480  ;
+}
+
+global proc ra2(){setAttr "defaultResolution.width" 960; setAttr "defaultResolution.height" 540 ;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 960 540 ;}
+
+global proc ra3(){setAttr "defaultResolution.width" 1280;setAttr "defaultResolution.height" 1024;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 1280 1024  ;}
+
+global proc ra4(){setAttr "defaultResolution.width" 1024;setAttr "defaultResolution.height" 768 ;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 1024 768  ;} 
+  
+global proc ra5(){setAttr "defaultResolution.width" 1280;setAttr "defaultResolution.height" 720 ;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 1280 720  ;}
+
+global proc ra6(){setAttr "defaultResolution.width" 1920;setAttr "defaultResolution.height" 1080;
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+playblast  
+-fo -filename (suffix())  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 1920 1080  ;}
+
+global proc take_playblast()
+{
+global string $gPlayBackSlider;
+string $soundFile = `timeControl -q -s $gPlayBackSlider`;
+string $NamePlayblast = `textFieldGrp -q -tx PBTxtName`;
+
+playblast  
+-fo -filename $NamePlayblast  -format movie -s $soundFile  
+-sequenceTime 0 -forceOverwrite -clearCache 1 -viewer 1 -showOrnaments 1 -os 
+-fp 4 -percent 100 -compression "none" -quality 100  -widthHeight 640 480  ;
+}
+
+global proc option () {playblast  -o ;}
+
+global proc openMovies () {	
+string $fileMovies= toNativePath (`workspace -q -rootDirectory`);
+string $filepath = $fileMovies+ "movies";
+string $syscmd = "start explorer /n,/e, " + $filepath; 
+system( $syscmd ); 		 	
+}
+
+/////////////////////////////////child_3_func///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////child_4_func/////////////////////////////////////////////////////////////////////////////////// 
+global proc getCam ()
+{
+	$selected = `textScrollList -q -si selectCam `;
+	select  $selected;
+}
+global proc getCamName()
+{
+	string $myCameras[] = `listCameras`;
+	textScrollList -e -ra  selectCam ;
+	for ($each in $myCameras) {
+		textScrollList 
+			-e -a $each selectCam ;		
+	}
+}
+global proc tearsCam()
+{
+$selected = `ls -sl`;
+$cam = `listRelatives -ad -typ camera`;
+	string $camName = $cam[0];
+	if (`panel -exists $camName`) {
+		deleteUI 
+		-panel $camName;
+}
+modelPanel 	-l $selected 	-to -cam $cam $camName;
+modelEditor -e 	-alo 1 	-pm 1 	-ns 1 	-sds 1 	-gr 1 	-nc 0 	-da smoothShaded -dtx 0 $camName;
+}
+global proc lockCam()
+{
+	int $lockValue = 1;
+	LockNode($lockValue);
+}
+global proc unlockCam()
+{
+	int $lockValue = 0;
+	LockNode($lockValue);
+}
+global proc LockNode(int $lockValue)
+{
+	string $array0[] = {".tx",".ty",".tz",".rx",".ry",".rz",".sx",".sy",".sz",".v",".hfa",".vfa",".fl",".lsr",".fs",".fd",".sa",".coi"};
+	string $array2[] = `ls -tr -sl`;
+	
+	int $i;
+	for($i = 0; $i < size($array0); $i++){
+		string $lbAttr0 = $array2[0] + $array0[$i];
+		setAttr -lock $lockValue $lbAttr0;
+	}
+}
+global proc createViewCam(int $cam)
+{	
+				string $camName = "camera1";
+				string $cPerspCam = `lookThru -q perspView`;
+				string $dropShape, $drop, $aStr[];
+				float $perspCoi = `camera -q -coi $cPerspCam`;
+
+					$aStr = `camera -coi $perspCoi`;
+					$drop = $aStr[0];
+					$dropShape = $aStr[1];
+			
+				$aStr = `pointConstraint $cPerspCam $drop`;
+				string $pConstraint = $aStr[0];
+				$aStr = `orientConstraint $cPerspCam $drop`;
+				string $oConstraint = $aStr[0];
+				delete $pConstraint;
+				delete $oConstraint;
+				if ($camName != "") rename $drop $camName;
+
+				string $cameraList[] =`ls -cameras`;
+				string $ccName[]= `ls -selection`;
+				lookThru $ccName[0];
+}
+
+global proc createCam ()
+{	
+camera -centerOfInterest 5 -focalLength 35 -lensSqueezeRatio 1 -cameraScale 1 -horizontalFilmAperture 1.41732 -horizontalFilmOffset 0 -verticalFilmAperture 0.94488 -verticalFilmOffset 0 -filmFit Fill -overscan 1.3 -motionBlur 0 -shutterAngle 144 -nearClipPlane 0.01 -farClipPlane 1000 -orthographic 0 -orthographicWidth 30; 
+objectMoveCommand; cameraMakeNode 1 "";
+}
+global proc createAim ()
+{	
+camera -centerOfInterest 5 -focalLength 35 -lensSqueezeRatio 1 -cameraScale 1 -horizontalFilmAperture 1.41732 -horizontalFilmOffset 0 -verticalFilmAperture 0.94488 -verticalFilmOffset 0 -filmFit Fill -overscan 1.3 -motionBlur 0 -shutterAngle 144 -nearClipPlane 0.01 -farClipPlane 1000 -orthographic 0 -orthographicWidth 30; 
+objectMoveCommand; cameraMakeNode 2 "";
+}
+global proc createUp ()
+{	
+camera -centerOfInterest 5 -focalLength 35 -lensSqueezeRatio 1 -cameraScale 1 -horizontalFilmAperture 1.41732 -horizontalFilmOffset 0 -verticalFilmAperture 0.94488 -verticalFilmOffset 0 -filmFit Fill -overscan 1.3 -motionBlur 0 -shutterAngle 144 -nearClipPlane 0.01 -farClipPlane 1000 -orthographic 0 -orthographicWidth 30; 
+objectMoveCommand; cameraMakeNode 3 "";
+}
+
+global proc camSwitch ()
+{
+$currentCam = `lookThru -q`;
+string $allCam[];
+$allCam = `listCameras -p`;
+int $nextCam;
+for($k=0;$k<size($allCam);$k++)
+{
+if($currentCam == $allCam[$k]) $nextCam = $k+1;
+}
+if($nextCam>=size($allCam)) $nextCam = 0;
+lookThru $allCam[$nextCam];
+}
+
+global proc string CameraToShelf()
+{
+	string $PaneL = `getPanel -withFocus`;
+	if ($PaneL == "scriptEditorPanel1"){$PaneL = "modelPanel4";}
+	string $cam = `modelPanel -q -cam $PaneL`;
+	string $selected[] = `ls $cam`;
+
+	string $toShelf;
+	for ($node in $selected)
+	{	
+	    string $int_array[] = `listAttr -r -w -k -u -v -m -s -l $node`;
+	    
+		for($i=0;$i<1;++$i) 
+        {		               
+            for ($j in $int_array)
+    		{
+            string $value = string ( `getAttr ($node + "." + $j)` );
+            $toShelf = ("catch (`setAttr \""+$node +"."+$j+"\" "+$value+"`);\n")+$toShelf;
+            }
+        }       
+	}
+	return $toShelf;
+}
+global proc string camShelf(){
+scriptToShelf  ("Cam",  CameraToShelf() , true);
+return 0;
+	}
+/////////////////////////////////child_4_func/////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+EA_HUD;
