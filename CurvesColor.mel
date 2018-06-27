@@ -1,0 +1,69 @@
+/*
+overrideColor v1.1
+Copyright © 2011 G.FERRACHAT
+mail : gferrachat@gmail.com
+http://www.vimeo.com/creepspahuska
+*/
+
+
+window -t "overrideColor v1.1" DRAWINGOVERRIDES;
+    columnLayout;
+        gridLayout -numberOfColumns 8 -cellWidthHeight 45 25;
+            button -l "None" -c  "overrideColor(0)";
+            button -l "" -bgc 0 0 0 -c  "overrideColor(1)";
+            button -l "" -bgc 0.75 0.75 0.75 -c  "overrideColor(2)";
+            button -l "" -bgc 0.5 0.5 0.5 -c  "overrideColor(3)";
+            button -l "" -bgc .8 0 0.2 -c  "overrideColor(4)";
+            button -l "" -bgc 0 0 .4 -c  "overrideColor(5)";
+            button -l "" -bgc 0 0 1 -c  "overrideColor(6)";
+            button -l "" -bgc 0 .3 0 -c  "overrideColor(7)";
+            button -l "" -bgc 0.2 0 0.3 -c  "overrideColor(8)";
+            button -l "" -bgc .8 0 .8 -c  "overrideColor(9)";
+            button -l "" -bgc 0.6 0.3 0.2 -c  "overrideColor(10)";
+            button -l "" -bgc 0.25 0.13 0.13 -c  "overrideColor(11)";
+            button -l "" -bgc 0.7 .2 0 -c  "overrideColor(12)";
+            button -l "" -bgc 1 0 0 -c  "overrideColor(13)";
+            button -l "" -bgc 0 1 0 -c  "overrideColor(14)";
+            button -l "" -bgc 0 0.3 0.6 -c  "overrideColor(15)";
+            button -l "" -bgc 1 1 1 -c  "overrideColor(16)";
+            button -l "" -bgc 1 1 0 -c  "overrideColor(17)";
+            button -l "" -bgc 0 1 1 -c  "overrideColor(18)";
+            button -l "" -bgc 0 1 .8 -c  "overrideColor(19)";
+            button -l "" -bgc 1 .7 .7 -c  "overrideColor(20)";
+            button -l "" -bgc 0.9 .7 .5 -c  "overrideColor(21)";
+            button -l "" -bgc 1 1 0.4 -c  "overrideColor(22)";
+            button -l "" -bgc 0 0.7 .4 -c  "overrideColor(23)";
+            button -l "" -bgc .6 .4 .2 -c  "overrideColor(24)";
+            button -l "" -bgc .63 .63 .17 -c  "overrideColor(25)";
+            button -l "" -bgc 0.4 0.6 0.2 -c  "overrideColor(26)";
+            button -l "" -bgc 0.2 0.63 0.35 -c  "overrideColor(27)";
+            button -l "" -bgc 0.18 0.63 0.63 -c  "overrideColor(28)";
+            button -l "" -bgc 0.18 0.4 0.63 -c  "overrideColor(29)";
+            button -l "" -bgc 0.43 0.18 0.63 -c  "overrideColor(30)";
+            button -l "" -bgc 0.63 0.18 0.4 -c  "overrideColor(31)";
+        setParent ..;
+        button -l "Disable Overrides" -w 360 -c "overrideDisabled()";
+showWindow DRAWINGOVERRIDES;
+window -e -wh 362 126 DRAWINGOVERRIDES;
+
+
+proc overrideDisabled() {
+    
+    string $selected[]=`ls -sl`;
+    int $amount=`size($selected)`;
+    for ($n=0; $n<$amount; $n++) {
+        setAttr ($selected[$n] + ".overrideEnabled") 0;
+    }
+}
+
+proc overrideColor(int $Index) {
+    string $selected[]=`ls -sl`;
+    int $amount=`size($selected)`;
+    for ($n=0; $n<$amount; $n++) {
+        setAttr ($selected[$n] + ".overrideEnabled") 1;
+    };
+
+    for ($n=0; $n<$amount; $n++) {
+        setAttr ($selected[$n] + ".overrideColor") $Index;
+    };
+}
