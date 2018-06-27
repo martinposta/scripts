@@ -1,0 +1,359 @@
+// *********************
+//
+// ------- BD Process ---------  
+//	
+global proc breakdown()
+	{
+	breakdownKeys(0,0);
+	}
+
+
+global proc breakdownOptions()
+	{
+
+ 	// create optionvar if nesc
+	if (!`optionVar -exists breakdownStep`)
+		{
+		optionVar -floatValue "breakdownStep" 0.2;
+		}
+	// get optionVar
+	float  $step = `optionVar -q breakdownStep`;
+	
+	// UI for changing %
+	if (`window -exists breakdown`)
+		showWindow breakdown;
+	else
+		{
+		window -wh 260 100 breakdownUI;
+		columnLayout;
+						floatSliderGrp -field true -v $step -min 0.0 -max 1.0 -pre 2 -cc ("optionVar -fv breakdownStep `floatSliderGrp -q -v step`") step;
+						button -l "OK" -c ("deleteUI breakdownUI");
+		showWindow breakdownUI;
+		}
+	
+	}
+
+// -------------------------------------------------------------------------------------------------------------------------------------
+// dir : -1 prev key, 1 next key
+// mode : 0 average, 1 breakdown 
+global proc breakdownKeys(int $dir, int $mode)
+	{
+	// source "e:\\mel\\animation\\autoTangent.mel";
+	float $step  = 1.0; // default value
+	if (`optionVar -exists breakdownStep`) // if there is an optionVar, use it now
+  	 	$step = `optionVar -q breakdownStep`;
+	else 
+		optionVar -floatValue "breakdownStep" 0.2;
+	
+	// get selected keys
+	string $attrWKeysSelected[] = `keyframe -q -name`;
+	int $numAttr = size($attrWKeysSelected);	
+	float $prevValue, $nextValue, $newValue, $diff;
+	float $keyTime[];
+   	float $keyValueSelected[], $keyValueAll[];
+	int $keyIndex[];
+	float $middle;
+	int $autoSelected = 0;
+	// any keys selected? if not, autoSelect all on this frame for this selection
+	string $sel[]=`ls -sl`;
+	if ((size($sel)>0) && (`keyframe -query -sl -keyframeCount `==0))
+		{
+		$autoSelected = 1;
+		selectKey -t (`currentTime -q`);
+		}
+		
+ if($numAttr < 1) {
+      string $errorString = "There should be an animated attribute selected.";
+      error -showLineNumber true $errorString;
+   }
+	// for each attribute curve with a selected key
+	for($i = 0; $i < $numAttr; $i++) 
+		{
+		$keyTime = `keyframe -sl -q -tc $attrWKeysSelected[$i]`;
+    	$keyIndex = `keyframe -sl -q -iv $attrWKeysSelected[$i]`;
+    	$keyValueSelected = `keyframe -sl -q -vc $attrWKeysSelected[$i]`;
+    	$keyValueAll = `keyframe -q -vc $attrWKeysSelected[$i]`;
+    	$numSelectedKeys = size($keyTime);
+    	$numKeys =`keyframe -query -keyframeCount $attrWKeysSelected[$i]`;
+		if($numKeys < 2) { 
+			string $warningString = "not enough keys on curve  " + $attrWKeysSelected[$i] + "...Skipped...\n";
+			continue; }
+		// for each selected key on this curve (will always work best if only one key selected per curve)
+		for($j = 0; $j < $numSelectedKeys; $j++) 
+			{   
+			// if it has a key before and after
+			if(($keyIndex[$j] > 0) && ($keyIndex[$j] < $numKeys-1)) 
+				{
+			
+				// get prev or next value
+				$prevValue =  $keyValueAll[($keyIndex[$j] - 1)];
+				$nextValue =  $keyValueAll[($keyIndex[$j] + 1)];
+				$currentValue = $keyValueSelected[$j];
+				// ---- get new value
+				// BREAKDOWN
+				if ($dir == -1 && $mode == 1)
+					$diff = ($prevValue-$currentValue)* $step;
+				if ($dir == 1 && $mode == 1)
+					$diff = ($nextValue-$currentValue)* $step;
+				// AVERAGE
+				if ($mode == 0)
+					{
+					// get middle value
+					$middle = ($prevValue + $nextValue) / 2;
+					// go % towards it
+					$diff = ($middle-$currentValue) * $step;
+					
+					}
+				// change this value **
+				 keyframe -e -in $keyIndex[$j] -r -valueChange $diff $attrWKeysSelected[$i];;
+				
+				// if it's not stepped or linear, then autotangent it
+				string $tang[] =`keyTangent -q -ott`;
+				}
+			}
+	}
+	// if we autoSelected, then deselect all keys
+	if ($autoSelected == 1)
+		{
+		selectKey -cl;
+		}
+	}
+// -------------------------------------------------------------------------------------------------------------------------------------
+global  proc float bdLerp (float $a, float $b, float $t)
+	{
+  	return  $a + ( $b - $a ) * $t;
+	}
+// --------------------------------------------------------------------------------------------------------------
+
+
+
+// *********************
+//
+// ------- BD NEXT ---------  
+//
+global proc breakdownNext()
+	{
+
+	breakdownKeys(1,1);
+	}
+// *********************
+//
+// ------- BD PREV ---------  
+//	
+global proc breakdownPrev()
+	{
+
+	 breakdownKeys(-1,1);
+	}
+	
+	
+	
+// *********************
+//
+// ------- NUDGE KEYS ---------  
+//	
+global proc nudgeKeys(int $amt)
+    {
+    int $autoSelected = 0;
+    // ------------------------
+    // get selected keys (graphEd)
+    // ------------------------
+    string $attrWKeysSelected[] = `keyframe -q -name`;
+    int $numAttr = size($attrWKeysSelected);   
+   
+    string $sel[]=`ls -sl`;
+    // ------------------------
+    // no keys selected, use selected items at this time
+    // ------------------------
+    if (size($sel) &&  (`keyframe -query -sl -keyframeCount `==0))
+        {
+        $autoSelected = 1;
+        selectKey -t (`currentTime -q`);
+        }
+       
+    // ------------------------
+    // move keys and frame head
+    // ------------------------
+    if (`keyframe -query -sl -keyframeCount `!= 0)
+        {
+        keyframe -e -r -tc $amt;
+        if ($autoSelected) currentTime -e ((`currentTime -q`)+$amt);
+        }
+    // ------------------------
+    // if we autoSelected, remove key selection
+    // ------------------------
+    if ($autoSelected == 1)
+        {
+        selectKey -cl;
+        }   
+    }
+
+
+global proc nudgeminus()
+{
+nudgeKeys(-1);
+}
+
+global proc nudgeplus()
+{
+nudgeKeys(1);
+}
+
+    
+// *********************
+//
+// ------- INSERT BD ---------  
+//
+global proc insertBreakdown()
+{
+	source tweenMachine.mel; // need this
+	if (`window -q -ex insBDWin`) deleteUI insBDWin ;
+	global string $iBversion;
+	$iBversion = "0.1";
+	window -t ("Insert Breakdown "+($iBversion)+ " (req's tweenMachine)") -in "iBD" -w 300 -h 50 insBDWin;
+
+	rowLayout -numberOfColumns 6
+
+	     -columnWidth6 70 40 40 40 40 200
+	     -columnAlign6 "center" "center" "center" "center" "center" "right"
+	    -columnAttach 1 "both"  0
+	    -columnAttach 2 "both"  0
+	    -columnAttach 3 "both"  0
+	    -columnAttach 4 "both"  0
+	    -columnAttach 5 "both"  0;
+	button -label "copy prev" -w 68 -bgc .92 .31 .35 -c insBet0;
+	button -label "1/5" -w 38 -bgc .83 .38 .38 -c insBet20;
+	button -label "1/3" -w 38 -bgc .74 .44 .4 -c insBet33;
+	button -label "2/5" -w 38 -bgc .68 .48 .41 -c insBet40;
+	button -label "1/2" -w 38 -bgc .6 .54 .44 -c insBet50;
+
+	rowLayout -numberOfColumns 4
+		-columnWidth4 40 40 40  70
+	       -columnAlign4 "center" "center" "center" "center"
+	    -columnAlign  1 "both"
+	    -columnAttach 1 "both"  0
+	    -columnAttach 2 "both"  0
+	    -columnAttach 3 "left"  0
+	    -columnAttach 4 "both"  0;
+	button -label "3/5" -w 38 -bgc .51 .6 .46 -c insBet60;
+	button -label "2/3" -w 38 -bgc .46 .64 .48 -c insBet66;
+	button -label "4/5" -w 38 -bgc .38 .7 .5 -c insBet80;
+	button -label "copy current" -w 68 -bgc .29 .77 .52  -c insBet100;
+	showWindow;
+}
+
+global proc insBet0()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(0, $whatSel);
+}
+
+global proc insBet20()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.2, $whatSel);
+}
+
+global proc insBet33()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.33, $whatSel);
+}
+
+global proc insBet40()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.4, $whatSel);
+}
+
+
+global proc insBet50()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.5, $whatSel);
+}
+
+global proc insBet60()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.6, $whatSel);
+}
+
+global proc insBet66()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.66, $whatSel);
+}
+
+global proc insBet80()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(.8, $whatSel);
+}
+
+global proc insBet100()
+{
+string $whatSel[] = `ls -sl`;
+timeSliderEditKeys addInbetween;
+tween_Machine(1, $whatSel);
+}
+
+
+
+
+global proc shuttleplay()
+{
+// press key
+global float $flipperStart;
+$flipperStart = `currentTime -query`;
+play -forward true;
+}
+
+global proc shuttlestop()
+{
+// release key
+global float $flipperStart;
+play -state off;
+currentTime -e $flipperStart;
+}
+
+global proc removeblankframe()
+{
+int $time = `currentTime -q`;
+int $bumpTime = ($time + 1);
+currentTime $bumpTime;
+timeSliderEditKeys removeInbetween;
+currentTime $time;
+}
+
+global proc insertblankframe()
+{
+int $time = `currentTime -q`;
+int $bumpTime = ($time + 1);
+currentTime $bumpTime;
+timeSliderEditKeys addInbetween;
+currentTime $time;
+}
+
+global proc doautotan()
+{
+source "autoTangent.mel"; 
+
+    float $soft = 3.5 / 100.0 ;
+	int $bFlatten = 0 ;
+
+    // Store in option var too!
+    optionVar -fv "aTan_softness" $soft ;
+    optionVar -iv "aTan_flatten" $bFlatten ;
+
+    // Make it so!
+    aTan_smoothKeys($soft, $bFlatten) ;
+}
