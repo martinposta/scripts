@@ -5,7 +5,7 @@
 #    / __ `__ \/ /  Licensed under Creative Commons BY-SA
 #   / / / / / / /  http://creativecommons.org/licenses/by-sa/3.0/
 #  /_/ /_/ /_/_/  _________                                   
-#               /_________/  Revision 16, 2016-02-29
+#               /_________/  Revision 17, 2016-03-23
 #      _______________________________
 # - -/__ Installing Python Scripts __/- - - - - - - - - - - - - - - - - - - - 
 # 
@@ -34,7 +34,7 @@
 __author__ = 'Morgan Loomis'
 __license__ = 'Creative Commons Attribution-ShareAlike'
 __category__ = 'animationScripts'
-__revision__ = 16
+__revision__ = 17
 
 import maya.cmds as mc
 import maya.mel as mm
@@ -951,7 +951,8 @@ class KeySelection(object):
         
         #other housekeeping
         self._curvesCulled = False
-        
+    
+    
     @property
     def curves(self):
         '''
@@ -982,15 +983,17 @@ class KeySelection(object):
                 if mc.referenceQuery(c, isNodeReferenced=True):
                     remove.append(c)
                 else:
-                    plug = mc.listConnections('.'.join((c,'output')), source=False, plugs=True)[0]
-                    if not mc.getAttr(plug, keyable=True) and not mc.getAttr(plug, settable=True):
-                        remove.append(c)
+                    plug = mc.listConnections('.'.join((c,'output')), source=False, plugs=True)
+                    if plug:
+                        if not mc.getAttr(plug, keyable=True) and not mc.getAttr(plug, settable=True):
+                            remove.append(c)
             if remove:
                 for r in remove:
                     self._curves.remove(r)
             self._curvesCulled = True
         
         return self._curves
+    
     
     @property
     def channels(self):
@@ -1997,3 +2000,5 @@ class UndoChunk():
 # Revision 15: 2015-05-18 : Small bugfix in matchBake
 #
 # Revision 16: 2016-02-29 : Support for animCurveEditor and fixing some old hotkey bugs.
+#
+# Revision 17: 2016-03-23 : keySelection bug fix.
