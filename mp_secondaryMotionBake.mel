@@ -1,0 +1,22 @@
+/*
+    Script:     secondaryMotion.mel
+    Version:    0.1
+    Author:     Martin Pošta
+    Website:    http://www.martinposta.com
+	Based on: 	Lee Dunham's secondary motion workflow from Animation exchange twitch talk 2018. Go check it out. It's awesome.
+
+    Descr:      It makes stuff move.
+	Usage:		Selct a controler. Choose if you want secondary motion with "translation and rotation", or just "translation", or just "rotation".
+				After initial setup, tweak the selected jiggle settings to your liking, then hit the Bake button.
+
+*/
+
+//vyčištění
+select -r pPlane1 ;
+doCreateGeometryCache 6 { "2", "1", "10", "OneFile", "1", "","0","","0", "add", "0", "1", "1","0","1","mcx","0" } ;
+select -r $selekce;
+bakeResults -simulation true -t "1:120" -sampleBy 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true ;
+select -r pPlane1 ;
+delete;
+select -r hairSystem1Follicles ;
+delete;
