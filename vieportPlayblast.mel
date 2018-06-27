@@ -1,0 +1,7 @@
+int $rangeStartFrame = `playbackOptions -q -min`;
+
+currentTime -e $rangeStartFrame;
+playbackOptions -playbackSpeed 0 -loop "once" -by 1;
+playButtonForward;
+playbackOptions -playbackSpeed 1 -loop "continuous";
+
